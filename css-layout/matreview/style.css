@@ -1,3 +1,6 @@
+body {
+  background-color: chartreuse;
+}
 h1 {
   background: purple;
   padding-top: 40px;
@@ -11,4 +14,7 @@ h1 {
 
 li {
   background-color: chocolate;
+  font-family: fantasy;
+  font-size: 50px;
+  display: inline-block;
 }

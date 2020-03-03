@@ -1,0 +1,29 @@
+body {
+  background-color: cornsilk;
+}
+
+.container {
+  width: 900px;
+  display: flex;
+}
+
+.item {
+  height: 100px;
+  display: flex;
+  flex-grow: 1;
+}
+
+.green {
+  background-color: green;
+  flex-grow: 1;
+}
+
+.yellow {
+  background-color: yellow;
+  flex-grow: 1;
+}
+
+.purple {
+  background-color: purple;
+  flex-grow: 4;
+}

@@ -1,6 +1,13 @@
 body {
   background-color: chartreuse;
 }
+
+.fixed {
+  background-color: rebeccapurple;
+  position: fixed;
+  right: 50px;
+}
+
 h1 {
   background: purple;
   padding-top: 40px;
@@ -13,8 +20,15 @@ h1 {
 }
 
 li {
+  list-style-type: none;
   background-color: chocolate;
   font-family: fantasy;
   font-size: 50px;
   display: inline-block;
+}
+
+.flexes {
+  background-color: red;
+  display: flex;
+  flex-direction: column;
 }

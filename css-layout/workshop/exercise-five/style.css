@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 150vh;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: aqua;
+  height: 50px;
+}
+
+.layout {
+  display: flex;
+  justify-content: space-between;
+  height: 150vh;
+}
+
+.content {
+  background-color: red;
+  width: calc(100vw - 200px);
+}
+
+.sidebar {
+  width: 90px;
+}
+
+.left {
+  background-color: orange;
+}
+
+.right {
+  background-color: purple;
+}
+
+.fixed {
+  width: 55px;
+  height: 55px;
+  background-color: black;
+}
+
+.footer {
+  position: fixed;
+  height: 20vh;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: blue;
+  color: white;
+  text-align: center;
+}

@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  background-color: yellow;
+  height: 250px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0;
+}
+
+.item {
+  background-color: purple;
+  height: 100px;
+  width: 100px;
+  display: inline-block;
+  margin-left: 5px;
+}

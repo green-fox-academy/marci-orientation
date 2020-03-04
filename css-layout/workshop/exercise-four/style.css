@@ -6,17 +6,16 @@ body {
   display: flex;
   position: fixed;
   background-color: purple;
-  height: 100px;
+  height: 75px;
   width: 100vw;
   align-items: center;
-  margin-top: -15px;
   padding: 0;
 }
 
 .link {
   background-color: turquoise;
   display: inline-block;
-  height: 25px;
+  height: 35px;
   width: 100px;
   margin-left: 15px;
 }
@@ -25,6 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 120vh;
+  margin-top: -16px;
 }
 
 .layout {
@@ -37,7 +37,6 @@ body {
 .content {
   background-color: yellow;
   width: 65vw;
-  margin-left: 10px;
 }
 
 .sidebar {

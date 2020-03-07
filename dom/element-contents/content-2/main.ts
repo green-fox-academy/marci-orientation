@@ -1,9 +1,3 @@
-// const list = ["apple", "banana", "cat", "dog"];
-// const item = document.querySelectorAll("li");
-// for (let i = 0; i < item.length; i++) {
-//   item[i].innerHTML = list[i];
-// }
-
 class ItemList {
   private list: string[];
   private item: NodeListOf<HTMLLIElement>;

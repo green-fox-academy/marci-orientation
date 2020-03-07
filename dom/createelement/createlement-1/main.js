@@ -1,0 +1,15 @@
+var asteroidList = document.querySelector("ul.asteroids");
+var item = document.createElement("li");
+item.id = "gf";
+item.textContent = "The Green Fox";
+asteroidList.appendChild(item);
+var lampLighter = document.createElement("li");
+lampLighter.id = "lamplighter";
+lampLighter.textContent = "The Lamplighter";
+asteroidList.appendChild(lampLighter);
+var heading = document.createElement("h1");
+heading.textContent = "I can add elements to the DOM!";
+document.querySelector(".container").appendChild(heading);
+var image = document.createElement("img");
+image.setAttribute("src", "https://wired.me/wp-content/uploads/2020/01/Science_Cats.jpg");
+document.querySelector(".container").appendChild(image);

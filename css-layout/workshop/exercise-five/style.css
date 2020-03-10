@@ -41,9 +41,12 @@ body {
 }
 
 .fixed {
-  width: 55px;
-  height: 55px;
+  position: absolute;
+  width: 100px;
+  height: 100px;
   background-color: black;
+  top: 75%;
+  left: 75%;
 }
 
 .footer {

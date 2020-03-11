@@ -63,12 +63,18 @@ const inner: boolean[] = cocktails.map(e => {
 const alcoholName: string[] = cocktails.map(e => {
   return e.name;
 });
+const price: number[] = cocktails.map(e => {
+  return e.price;
+});
 
 app.get("/", (req: any, res: any) => {
   inner.forEach(e => {
     if (inner) {
       res.render("main", {
-        alcoholList: alcoholList
+        alcoholName: alcoholName,
+        price: price,
+        cocktails: "",
+        alcoholList: ""
       });
     } else {
       res.render("main", { cocktails: cocktails, alcoholList: alcoholList });

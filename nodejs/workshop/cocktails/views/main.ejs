@@ -14,10 +14,13 @@
       <h4>Price: <%= cocktails[i].price %></h4>
       <% } %>
     </div>
+
     <div id="alcoholic cocktails">
       <h3>Cocktails that contain alcohol:</h3>
       <% for( let i = 0; i < alcoholName.length; i ++ ) { %>
       <li><%= alcoholName[i] %></li>
+      <% } %> <% for( let i = 0; i < price.length; i++ ) { %>
+      <li><%= price[i] %></li>
       <% } %>
     </div>
 

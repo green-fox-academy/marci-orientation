@@ -5,14 +5,12 @@ const PORT = 3000;
 
 app.set("view engine", "ejs");
 
-// app.get("/", (req: any, res: any) => {
-//   res.render("home", {
-//     name: "Welcome back, Guest!"
-//   });
-// });
-
 app.get("/", (req: any, res: any) => {
-  res.render("home", { name: req.query.name || "Guest" });
+  if (req.query.name) {
+    res.render("home", { name: req.query.name });
+  } else {
+    res.render("home", { name: "Guest" });
+  }
 });
 
 app.listen(PORT, () => {

@@ -64,14 +64,10 @@ const alcoholName: string[] = cocktails.map(e => {
   return e.name;
 });
 
-console.log(alcoholName);
-
 app.get("/", (req: any, res: any) => {
   inner.forEach(e => {
     if (inner) {
       res.render("main", {
-        alcoholName: alcoholName,
-        cocktails: cocktails,
         alcoholList: alcoholList
       });
     } else {

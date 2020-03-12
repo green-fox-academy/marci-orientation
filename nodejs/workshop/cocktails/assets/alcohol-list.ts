@@ -1,1 +1,1 @@
-export const alcoholList = ["gin", "vodka", "rum", "tequila"];
+export const alcoholList: string[] = ["gin", "vodka", "rum", "tequila"];

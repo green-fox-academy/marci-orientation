@@ -1,3 +1,5 @@
+import { alcoholList } from "./alcohol-list";
+
 export const cocktails = [
   {
     name: "GIN FIZZ",
@@ -48,3 +50,9 @@ export const cocktails = [
     isAlcoholic: false
   }
 ];
+
+const filtered = cocktails.filter(cocktail =>
+  cocktail.contains.includes("rum")
+);
+
+console.log(filtered);

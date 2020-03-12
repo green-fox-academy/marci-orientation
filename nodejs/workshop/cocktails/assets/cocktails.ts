@@ -51,8 +51,8 @@ export const cocktails = [
   }
 ];
 
-const filtered = cocktails.filter(cocktail =>
-  cocktail.contains.includes("rum")
-);
+// const filtered = cocktails.filter(cocktail =>
+//   cocktail.contains.includes("rum")
+// );
 
-console.log(filtered);
+// console.log(filtered);

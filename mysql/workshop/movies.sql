@@ -21,3 +21,14 @@ CREATE TABLE WatchedMovies
     FOREIGN KEY (watched_list) REFERENCES Movies (id)
 
 );
+
+CREATE TABLE Movies
+(
+    id           INTEGER PRIMARY KEY AUTO_INCREMENT,
+    movie_title  VARCHAR(100),
+    director     VARCHAR(100),
+    year         DATETIME,
+    watched_list VARCHAR(50) NOT NULL ,
+    FOREIGN KEY (watched_list) REFERENCES todo_app (todo_list)
+
+);

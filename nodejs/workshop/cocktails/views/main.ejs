@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Document</title>
-  </head>
-  <body>
-    <h1>Cocktails:</h1>
-    <div id="list">
-      <% for( let i = 0; i < cocktails.length; i++ ) { %>
-      <li>Name: <%= cocktails[i].name %></li>
-      <li>Contents: <%= cocktails[i].contains %></li>
-      <h4>Price: <%= cocktails[i].price %></h4>
-      <% } %>
-    </div>
-  </body>
+</head>
+<body>
+<h1>Cocktails:</h1>
+<div id="list">
+    <% for( let i = 0; i < cocktails.length; i++ ) { %>
+        <li>Name: <%= cocktails[i].name %></li>
+        <li>Contents: <%= cocktails[i].contains %></li>
+        <h4>Price: <%= cocktails[i].price %></h4>
+    <% } %>
+</div>
+</body>
 </html>

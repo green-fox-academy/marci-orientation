@@ -3,9 +3,9 @@
 const bomb = document.getElementsByClassName("display")[0];
 const button = document.getElementById("defused");
 const warning = document.getElementById("run");
-let counter = 10;
 const detonationTime = 0;
 const warningTime = 2;
+let counter = 10;
 
 const temp = setInterval(() => {
   if (counter === warningTime) {

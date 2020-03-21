@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/marci-orientation.iml" filepath="$PROJECT_DIR$/marci-orientation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/callback.iml" filepath="$PROJECT_DIR$/callback.iml" />
     </modules>
   </component>
 </project>

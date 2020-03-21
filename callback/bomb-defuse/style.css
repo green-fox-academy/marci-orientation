@@ -1,12 +1,43 @@
+body {
+  background: bisque;
+  margin: 0
+}
+
 .display {
   display: flex;
   justify-content: center;
-    font-size: 30px;
+  font-size: 30px;
+  font-family: Hack, serif;
+  color: indigo;
+  margin-top: 10%;
 }
 
 .container {
   display: flex;
   justify-content: center;
+}
+
+.warning-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+}
+
+
+#run {
+  font-size: 40px;
+  display: none;
+  justify-content: center;
+  animation: .5s shake infinite;
+}
+
+@keyframes shake {
+  0% { transform: skewX(-15deg); }
+  5% { transform: skewX(15deg); }
+  10% { transform: skewX(-15deg); }
+  15% { transform: skewX(15deg); }
+  20% { transform: skewX(0deg); }
+  100% { transform: skewX(0deg); }
 }
 
 #defused {
@@ -22,8 +53,9 @@
   padding: 13px 25px;
   text-decoration: none;
   text-shadow: 0 1px 0 #263666;
-    text-align: center;
-    width: 250px;
+  text-align: center;
+  width: 250px;
+  margin-top: 2%;
 }
 
 .defuse:hover {

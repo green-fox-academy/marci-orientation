@@ -7,4 +7,3 @@ class SimpleTimeout {
 }
 
 const apple: SimpleTimeout = new SimpleTimeout();
-const appleTimeout: NodeJS.Timeout = apple.set;

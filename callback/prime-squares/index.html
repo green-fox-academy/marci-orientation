@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Prime squares</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: arial, serif;
+      }
+      section {
+        display: grid;
+        grid-auto-rows: 50px;
+        grid-template-columns: repeat(10, 1fr);
+        width: 1000px;
+        margin: 0 auto;
+      }
+      section div {
+        box-shadow: 0 0 10px #666 inset;
+        text-align: center;
+        line-height: 50px;
+      }
+      .not-prime {
+        background: tomato;
+      }
+      .prime {
+        background: limegreen;
+      }
+    </style>
+  </head>
+  <body>
+    <section></section>
+
+    <script>
+      for (let i = 0; i <= 100; i++) {
+        let divTag = document.createElement("div");
+
+        divTag.textContent = [i];
+        document.querySelector("section").appendChild(divTag);
+      }
+
+      const isPrime = number => {
+        let primeOrNot = "";
+        if (number === 1) primeOrNot = "not-prime";
+        if (number > 1) primeOrNot = "prime";
+
+        for (let i = 2; i < number; i++)
+          if (number % i === 0) primeOrNot = "not-prime";
+
+        let newDivs = document.getElementsByTagName("div");
+
+        const setPrime = newDivs[number].setAttribute("class", primeOrNot);
+      };
+
+      let counter = 0;
+
+      const myINT = setInterval(() => {
+        isPrime(counter);
+        counter++;
+
+        if (counter > 100) clearInterval(myINT);
+      }, 100);
+    </script>
+  </body>
+</html>

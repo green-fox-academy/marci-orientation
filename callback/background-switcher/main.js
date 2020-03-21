@@ -22,7 +22,7 @@ temp.setBGImage();
 // const BGImage = () => {
 //   const order = Math.random() * 1132412341234;
 //   document.querySelector("body").style.backgroundImage =
-//     "url(https://loremflickr.com/1280/800/hungary/?ord=" + ord + ")";
+//     "url(https://loremflickr.com/1280/800/hungary/?order=" + order + ")";
 // };
 //
 // BGImage();

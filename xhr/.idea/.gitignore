@@ -1,2 +1,6 @@
 # Default ignored files
 /workspace.xml
+node_modules
+/node_modules
+*.js
+/*.js

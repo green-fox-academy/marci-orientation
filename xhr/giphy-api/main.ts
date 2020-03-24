@@ -5,18 +5,20 @@ class GIPHY {
   private readonly API_KEY: string;
   private myRequest: XMLHttpRequest;
   private myGIF: HTMLElement;
-    public asd: HTMLImageElement;
+  public limitGIF: number;
+
   constructor(
     API_URL: string = "https://api.giphy.com/v1/gifs/search",
     API_KEY: string = "vtAtAQfLZXRy6YbSA8EPnPzwfwtRvbcQ",
     myRequest: XMLHttpRequest = new XMLHttpRequest(),
-    myGIF: HTMLElement = document.getElementById("gif-container"), asd: HTMLImageElement = document.createElement("img")
+    myGIF: HTMLElement = document.getElementById("gif-container"),
+    limitGIF: number = 16
   ) {
     this.API_URL = API_URL;
     this.API_KEY = API_KEY;
     this.myRequest = myRequest;
     this.myGIF = myGIF;
-      this.asd = asd;
+    this.limitGIF = limitGIF;
   }
 
   public load(): void {
@@ -36,7 +38,7 @@ class GIPHY {
   public open(): void {
     this.myRequest.open(
       "GET",
-      `${this.API_URL}?api_key=${this.API_KEY}&q=random&limit=16`
+      `${this.API_URL}?api_key=${this.API_KEY}&q=random&limit=${this.limitGIF}`
     );
   }
 

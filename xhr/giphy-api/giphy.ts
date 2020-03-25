@@ -20,7 +20,7 @@ class GIPHY {
       if (this.myRequest.status === 200) {
         const myResponse: any = JSON.parse(this.myRequest.responseText);
 
-        myResponse.data.forEach((e) => {
+        myResponse.data.forEach(e => {
           const GIF: HTMLImageElement = document.createElement("img");
           GIF.setAttribute("src", e.images.fixed_width_small_still.url);
           this.myGIF.appendChild(GIF);

@@ -15,7 +15,9 @@ class StarWars {
     this.myRequest.onload = () => {
       if (this.myRequest.status === 200) {
         const myResponse: any = JSON.parse(this.myRequest.responseText);
-        console.log(myResponse);
+        console.log("WHOLE OBJECT", myResponse);
+        console.log("VALUES", Object.values(myResponse));
+        console.log("KEYS", Object.keys(myResponse));
 
         // to be continued
 

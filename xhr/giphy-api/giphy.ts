@@ -7,16 +7,10 @@ class GIPHY {
   private myGIF: HTMLElement;
   public limitGIF: number;
 
-  constructor(
-    API_URL: string = "https://api.giphy.com/v1/gifs/search",
-    API_KEY: string = "vtAtAQfLZXRy6YbSA8EPnPzwfwtRvbcQ",
-    myRequest: XMLHttpRequest = new XMLHttpRequest(),
-    myGIF: HTMLElement = document.getElementById("gif-container"),
-    limitGIF: number = 16
-  ) {
+  constructor(API_URL: string, myGIF: HTMLElement, limitGIF: number) {
     this.API_URL = API_URL;
-    this.API_KEY = API_KEY;
-    this.myRequest = myRequest;
+    this.API_KEY = "vtAtAQfLZXRy6YbSA8EPnPzwfwtRvbcQ";
+    this.myRequest = new XMLHttpRequest();
     this.myGIF = myGIF;
     this.limitGIF = limitGIF;
   }
@@ -30,6 +24,9 @@ class GIPHY {
           const GIF: HTMLImageElement = document.createElement("img");
           GIF.setAttribute("src", e.images.fixed_width_small_still.url);
           this.myGIF.appendChild(GIF);
+          GIF.onclick = () => {
+            GIF.setAttribute("src", e.images.fixed_width_small.url);
+          };
         });
       }
     };
@@ -47,7 +44,11 @@ class GIPHY {
   }
 }
 
-const GIFGenerator: GIPHY = new GIPHY();
+const GIFGenerator: GIPHY = new GIPHY(
+  "https://api.giphy.com/v1/gifs/search",
+  document.getElementById("gif-container"),
+  16
+);
 GIFGenerator.load();
 GIFGenerator.open();
 GIFGenerator.send();

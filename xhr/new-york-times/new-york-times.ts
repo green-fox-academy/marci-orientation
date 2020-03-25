@@ -11,7 +11,7 @@ class NewYorkTimes {
     this.API_URL = API_URL;
     this.API_KEY = "T71tjoYl3iO8uVq6GnhukOtF7unCIKND";
     this.myRequest = new XMLHttpRequest();
-    this.articleContainer = document.getElementById("article-container");
+    this.articleContainer = document.querySelector("ul");
     this.searchKeyWord = searchKeyWord;
   }
 

@@ -7,8 +7,8 @@ class StarWars {
   private btn: HTMLElement;
   private counter: number;
 
-  constructor(API_URL: string) {
-    this.URL = API_URL;
+  constructor(URL: string) {
+    this.URL = URL;
     this.myRequest = new XMLHttpRequest();
     this.filmContainer = document.getElementById("film-list");
     this.btn = document.getElementById("button");
@@ -22,6 +22,7 @@ class StarWars {
         console.log(myResponse.count);
         console.log(myResponse.results);
 
+        //if this.counter < 7
         for (let i = 0; i < myResponse.count; i++) {
           this.btn.onclick = () => {
             const title: string = myResponse.results[this.counter].title;

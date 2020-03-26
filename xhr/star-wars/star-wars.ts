@@ -19,17 +19,19 @@ class StarWars {
     this.myRequest.onload = () => {
       if (this.myRequest.status === 200) {
         const myResponse: any = JSON.parse(this.myRequest.responseText);
-console.log("WHOLE OBJECT", myResponse);
-        console.log(myResponse.title.results);
+        console.log(myResponse.count);
+        console.log(myResponse.results);
 
-        for (let i = 0; i < myResponse.title.length; i++) {
+        for (let i = 0; i < myResponse.count; i++) {
           this.btn.onclick = () => {
-            let title: string = myResponse.results[i].title;
-            const releaseDate: string = myResponse.results[i].release_date;
-            const titleAndReleaseDate: string = `${title} ${releaseDate} `;
+            const title: string = myResponse.results[this.counter].title;
+            const releaseDate: string =
+              myResponse.results[this.counter++].release_date;
 
+            const titleAndReleaseDate: string = `${title} ${releaseDate} `;
             const filmList = document.createElement("li");
             filmList.innerText = titleAndReleaseDate;
+
             this.filmContainer.appendChild(filmList);
           };
         }
@@ -38,16 +40,15 @@ console.log("WHOLE OBJECT", myResponse);
   }
 
   public open(): void {
-    this.myRequest.open("GET", `${this.URL}${this.counter}`);
+    this.myRequest.open("GET", `${this.URL}`);
   }
 
   public send(): void {
     this.myRequest.send();
-    this.counter++;
   }
 }
-
 const film = new StarWars("https://swapi.co/api/films/");
+console.log(film);
 film.load();
 film.open();
 film.send();

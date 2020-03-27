@@ -1,7 +1,5 @@
 import * as express from "express";
 import * as path from "path";
-import * as e from "express";
-import { Request } from "express";
 
 class App {
   public app: express.Application;

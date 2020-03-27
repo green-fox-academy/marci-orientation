@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>REST backend day - Frontend</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header clearfix">
+        <h3 class="text-muted">REST backend day - Frontend</h3>
+      </div>
+
+      <p>
+        You can try your endpoints with this frontend application. You don't
+        have to modify either the <code>frontend.js</code> or the
+        <code>index.html</code> (even if you know how to do that).
+      </p>
+      <p>
+        This is how generally a frontend - backend application will communicate,
+        but now the frontend is fully ready and functional, your job is to put
+        the backend behind it.
+      </p>
+
+      <div id="no-frontend" class="alert alert-danger hidden">
+        The <code>frontend.js</code> could not be loaded. Double check these:
+        <ul>
+          <li>Are you using the correct static folder?</li>
+          <li>Does the script file named <code>frontend.js</code>?</li>
+        </ul>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Doubling</h1>
+        <p class="lead">Try your first exercise with just one button</p>
+        <div id="doubling_response"></div>
+        <p>
+          <button
+            class="btn btn-lg btn-success disabled"
+            href="#"
+            role="button"
+            id="doubling"
+          >
+            Try doubling endpoint
+          </button>
+        </p>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Greeter</h1>
+        <p class="lead">Try your greeter exercise with just one button</p>
+        <div id="greeter_response"></div>
+        <p>
+          <button
+            class="btn btn-lg btn-success disabled"
+            href="#"
+            role="button"
+            id="greeter"
+          >
+            Try greeter endpoint
+          </button>
+        </p>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Append A</h1>
+        <p class="lead">Try your append-a exercise with just one button</p>
+        <div id="appenda_response"></div>
+        <p>
+          <button
+            class="btn btn-lg btn-success disabled"
+            href="#"
+            role="button"
+            id="appenda"
+          >
+            Try appenda endpoint
+          </button>
+        </p>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Do until</h1>
+        <p class="lead">Try your do-until exercise with just one button</p>
+        <div id="dountil_response"></div>
+        <p>
+          <button
+            class="btn btn-lg btn-success disabled"
+            href="#"
+            role="button"
+            id="dountil"
+          >
+            Try dountil endpoint
+          </button>
+        </p>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; 2017 Green Fox Academy</p>
+      </footer>
+      <script src="./frontend.js"></script>
+      <script>
+        fetch("./frontend.js").then((res) => {
+          if (res.status !== 200) {
+            document.querySelector("#no-frontend").classList.toggle("hidden");
+          }
+        });
+      </script>
+    </div>
+  </body>
+</html>

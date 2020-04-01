@@ -1,4 +1,4 @@
-const Book = require("./book.model.js");
+const Book = require("../models/book.model.js");
 // import {Book} from "./book.model"
 
 // Create and Save Books

@@ -12,7 +12,7 @@ app.get("/", (req: express.Request, res: express.Response) => {
   res.json({ message: "Try searching for books" });
 });
 
-require("./routes/book.routes.js")(app);
+require("./app/routes/book.routes.js")(app);
 
 app.listen(8080, () => {
   console.log("Server is running on port 8080.");

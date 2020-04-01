@@ -1,4 +1,4 @@
-const sql = require("./database/db");
+const sql = require("./db");
 
 export const Book = function (book) {
   this.title = book.title;

@@ -1,7 +1,7 @@
 const mysql = require("mariadb/callback");
 // const dbConfig = require("./db.config");
 
-export const connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: "localhost",
   user: "marci-greenfox",
   password: "password",

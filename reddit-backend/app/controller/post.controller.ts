@@ -25,7 +25,8 @@ exports.create = (req: any, res: any) => {
     res.setHeader("Content-Type", "application/json");
     if (err)
       res.status(500).send({
-        message: err.message || "Some error occurred while creating a new post.",
+        message:
+          err.message || "Some error occurred while creating a new post.",
       });
     else res.send(data);
   });

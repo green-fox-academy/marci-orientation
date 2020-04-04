@@ -1,4 +1,5 @@
 import { connection } from "./db";
+import { resolve } from "url";
 
 export const Post = function (post: any) {
   this.id = post.id;
@@ -12,14 +13,14 @@ export const Post = function (post: any) {
 
 Post.create = (newPost: any, result: any) => {
   connection
-    .query("INSERT INTO reddit.posts VALUES ?;", newPost)
+    .query("INSERT INTO reddit.posts  VALUES ?", [newPost])
     .then((res) => {
-      console.log("created post: ", { id: res.insertId, ...newPost });
-      result(null, { id: res.insertId, ...newPost });
+      console.log(res);
+      result(null, res);
     })
-    .catch((err) => {
+    .catch((err: any) => {
       console.log("error: ", err);
-      result(err, null);
+      result(null, err);
       return;
     });
 };
@@ -32,7 +33,7 @@ Post.getAll = (result: any) => {
       result(null, res);
       return;
     })
-    .catch((err) => {
+    .catch((err: any) => {
       console.log("error: ", err);
       result(null, err);
       return;

@@ -10,16 +10,14 @@ export const Post = function (post: any) {
   this.vote = post.vote;
 };
 
-
-
 Post.create = (newPost: any, result: any) => {
   connection
     .query(
-      "INSERT INTO posts (title, url, timestamp) VALUES (?, ?, ?)",
+      "INSERT INTO reddit.posts VALUES ?;",
       newPost
     )
     .then((res) => {
-      console.log("created customer: ", { id: res.insertId, ...newPost });
+      console.log("created post: ", { id: res.insertId, ...newPost });
       result(null, { id: res.insertId, ...newPost });
     })
     .catch((err) => {

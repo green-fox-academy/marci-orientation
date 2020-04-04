@@ -16,7 +16,7 @@ exports.create = (req: any, res: any) => {
     res.status(400).send({ message: "Post can not be empty!" });
   }
 
-  const newPost = new Post({
+  let newPost = Post({
     title: req.body.title,
     url: req.body.url,
   });

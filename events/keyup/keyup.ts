@@ -1,6 +1,6 @@
-window.addEventListener("keyup", () => {
+window.addEventListener("keyup", (event) => {
   let result: HTMLHeadingElement = document.querySelector("h1");
-  const keyCode: any = event.keyCode;
+  const keyCode: string = event.key;
 
   result.innerHTML = `Last pressed key code is ${keyCode}.`;
 });

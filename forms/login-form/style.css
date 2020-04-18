@@ -1,0 +1,33 @@
+#username,
+#password {
+  margin-bottom: 5px;
+}
+
+#login-element {
+  background-color: azure;
+  width: 270px;
+}
+
+input[name='username'] {
+  background-color: aqua;
+  width: 250px;
+  height: 30px;
+  font-size: large;
+  border: 3px solid aliceblue;
+  display: block;
+}
+
+input[name='password'] {
+  background-color: rgb(209, 181, 206);
+  background-color: pink;
+  width: 250px;
+  height: 30px;
+  font-size: large;
+  border: 3px solid red;
+  display: block;
+}
+
+.forgotten {
+  font-size: 12px;
+  text-align: right;
+}

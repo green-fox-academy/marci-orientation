@@ -16,6 +16,10 @@ const allButtons: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
 
 const animals: string[] = ['dog', 'cat'];
 
+const final: Subscription = fromEvent(allButtons, 'click').subscribe(() => {
+  alert('Signed up for cat facts!');
+});
+
 pets.forEach((pet) => {
   fromEvent(pet, 'change').subscribe(() => {
     animals.indexOf(pet.value) !== -1
@@ -35,8 +39,4 @@ facts.forEach((fact) => {
       finalize(() => final)
     )
     .subscribe();
-});
-
-const final: Subscription = fromEvent(allButtons, 'click').subscribe(() => {
-  alert('Signed up for cat facts!');
 });

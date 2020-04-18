@@ -1,5 +1,5 @@
-import { fromEvent, Subscription } from 'rxjs';
-import { map, finalize } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
+import { map, merge } from 'rxjs/operators';
 
 const pets: NodeListOf<Element> = document.querySelectorAll(
   'input[name="pets"]'
@@ -13,12 +13,9 @@ const catButton: HTMLElement = document.getElementById('love');
 const allButtons: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
   'button'
 );
+const final = fromEvent(allButtons, 'click');
 
 const animals: string[] = ['dog', 'cat'];
-
-const final: Subscription = fromEvent(allButtons, 'click').subscribe(() => {
-  alert('Signed up for cat facts!');
-});
 
 pets.forEach((pet) => {
   fromEvent(pet, 'change').subscribe(() => {
@@ -35,8 +32,9 @@ facts.forEach((fact) => {
         fact.id === 'factsYes'
           ? (catButton.disabled = false)
           : (catButton.disabled = true);
-      }),
-      finalize(() => final)
+      })
     )
     .subscribe();
 });
+
+final.subscribe(() => alert('Signed up for cat facts!'));

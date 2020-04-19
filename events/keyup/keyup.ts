@@ -1,12 +1,11 @@
-import { fromEvent } from "rxjs";
-import { map } from "rxjs/operators";
+import { Observable, fromEvent } from 'rxjs';
+import { pluck } from 'rxjs/operators';
 
-const result: HTMLHeadingElement = document.querySelector("h1");
+const result: HTMLHeadingElement = document.querySelector('h1');
 
-fromEvent(window, "keyup")
-  .pipe(
-    map((event: KeyboardEvent) => {
-      result.innerHTML = `Last pressed key is ${event.key}`;
-    })
-  )
-  .subscribe();
+const keyup$: Observable<Event> = fromEvent(document, 'keyup');
+const keycode$: Observable<Event> = keyup$.pipe(pluck('key'));
+
+keycode$.subscribe(
+  (key: KeyboardEvent) => (result.innerHTML = `Last pressed key is ${key}`)
+);

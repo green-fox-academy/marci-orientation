@@ -1,5 +1,5 @@
 import { fromEvent, Observable } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMapTo } from 'rxjs/operators';
 
 const nav: HTMLElement = document.querySelector('nav');
 const imgInspector: Element = document.querySelector('.img-inspector');
@@ -22,7 +22,7 @@ const setAttribute = (a: number, b: number, c: number) => {
 
 click$
   .pipe(
-    mergeMap(() => {
+    mergeMapTo(() => {
       return {
         up: event.target.innerText === 'Up' ? setAttribute(0, -10, 0) : null,
         down: event.target.innerText === 'Down' ? setAttribute(0, 10, 0) : null,

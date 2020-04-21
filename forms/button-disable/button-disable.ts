@@ -1,5 +1,5 @@
-import { fromEvent } from 'rxjs';
-import { map, merge } from 'rxjs/operators';
+import { fromEvent, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 const pets: NodeListOf<Element> = document.querySelectorAll(
   'input[name="pets"]'
@@ -13,7 +13,8 @@ const catButton: HTMLElement = document.getElementById('love');
 const allButtons: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
   'button'
 );
-const final = fromEvent(allButtons, 'click');
+
+const final: Observable<Event> = fromEvent(allButtons, 'click');
 
 const animals: string[] = ['dog', 'cat'];
 

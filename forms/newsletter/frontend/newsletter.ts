@@ -3,6 +3,8 @@ import { ajax, AjaxRequest, AjaxResponse } from 'rxjs/ajax';
 import { map, catchError, switchMap } from 'rxjs/operators';
 
 const form: HTMLFormElement = document.querySelector('form');
+const eMail: HTMLInputElement = document.getElementById('email');
+const userName: HTMLInputElement = document.getElementById('username');
 
 const users: Observable<AjaxRequest> = ajax({
   url: 'http://localhost:3000/signup',
@@ -11,7 +13,8 @@ const users: Observable<AjaxRequest> = ajax({
     'Content-Type': 'application/json',
   },
   body: {
-    Scientist: `Aren't you bit worried about that exponential cascade scenario?`,
+    username: userName.value,
+    email: eMail.value,
   },
 }).pipe(
   map((response: AjaxResponse) => console.log('response: ', response)),
@@ -26,4 +29,4 @@ const submitForm: Observable<AjaxRequest> = fromEvent(form, 'submit').pipe(
   switchMap(() => users)
 );
 
-submitForm.subscribe((e) => console.log(e));
+submitForm.subscribe();

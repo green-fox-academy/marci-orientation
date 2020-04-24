@@ -1,4 +1,11 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { UserCredentialsDto } from './user/user.credentials.dto';
 
@@ -12,6 +19,7 @@ export class AppController {
   }
 
   @Post('/signup')
+  @UsePipes(ValidationPipe)
   async getHello(
     @Body() userCredentialsDto: UserCredentialsDto
   ): Promise<void> {

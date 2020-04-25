@@ -7,5 +7,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/giggle</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="reddit@localhost" uuid="43899d0a-ab36-4ad3-9ad1-8eb056c9e33e">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://localhost:3306/reddit</jdbc-url>
+    </data-source>
   </component>
 </project>

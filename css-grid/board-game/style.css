@@ -143,10 +143,6 @@ main {
   grid-column: 7;
 }
 
-.board {
-  padding: 1em 0;
-}
-
 .square {
   background: blanchedalmond;
   text-align: center;

@@ -5,7 +5,7 @@ import { UserCredentialsDto } from './user/user.credentials.dto';
 export class AppService {
   private readonly users: UserCredentialsDto[] = [];
 
-  getHello(userCredentialsDto: UserCredentialsDto): void {
+  getHello(userCredentialsDto: UserCredentialsDto) {
     this.users.push(userCredentialsDto);
   }
 

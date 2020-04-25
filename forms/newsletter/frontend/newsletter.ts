@@ -6,6 +6,9 @@ import { ajaxPost } from 'rxjs/internal/observable/dom/AjaxObservable';
 const form: HTMLFormElement = document.querySelector('form');
 const eMail: HTMLInputElement = document.getElementById('email');
 const userName: HTMLInputElement = document.getElementById('username');
+const credentials: HTMLParagraphElement = document.getElementById(
+  'credentials'
+);
 
 const submitted$: Observable<Event> = fromEvent(form, 'submit').pipe(
   map((event) => event.preventDefault()),
@@ -16,7 +19,9 @@ const submitted$: Observable<Event> = fromEvent(form, 'submit').pipe(
       { 'Content-Type': 'application/json' }
     )
   ),
-  map((response: AjaxResponse) => console.log('response ', response)),
+  map(
+    (response: AjaxResponse) => (credentials.innerHTML = response.xhr.response)
+  ),
   catchError((error: any) => {
     console.log('error: ', error);
     return of(error);

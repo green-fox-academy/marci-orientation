@@ -25,7 +25,7 @@ export class AppController {
   async getHello(
     @Res() res: Response,
     @Body() userCredentialsDto: UserCredentialsDto
-  ) {
+  ): Promise<void> {
     res.json(
       `Hello ${userCredentialsDto.username}, you signed up with your e-mail account: ${userCredentialsDto.email}`
     );

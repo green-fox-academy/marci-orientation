@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+}
+
+#content {
+  display: grid;
+  gap: 10px;
+  margin-right: 50px;
+  margin-left: 50px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  grid-template-areas:
+    'header header header header'
+    'main main half half'
+    'main main half half'
+    'main main half half'
+    'main main redbox1 redbox2'
+    'main main redbox1 redbox2'
+    'main main redbox1 redbox2'
+    'footer footer footer footer';
+}
+
+header {
+  grid-area: header;
+  background-color: pink;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 10% 10% 10% 10%;
+  gap: 10px;
+}
+
+.header p {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-left: 25px;
+  background-color: cyan;
+}
+
+redbox1 {
+  grid-area: redbox1;
+  background-color: greenyellow;
+}
+
+redbox2 {
+  grid-area: redbox2;
+  background-color: greenyellow;
+}
+
+.redbox-1,
+.redbox-2 {
+  height: 230px;
+  width: 150px;
+  background-color: red;
+}
+
+redbox1,
+redbox2 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  grid-area: main;
+  background-color: greenyellow;
+}
+
+half {
+  background-color: greenyellow;
+  grid-area: half;
+}
+
+footer {
+  background-color: grey;
+  grid-area: footer;
+}

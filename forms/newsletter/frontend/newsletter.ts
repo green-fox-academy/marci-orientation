@@ -7,7 +7,7 @@ const form: HTMLFormElement = document.querySelector('form');
 const eMail: HTMLInputElement = document.getElementById('email');
 const userName: HTMLInputElement = document.getElementById('username');
 
-const submitted: Observable<Event> = fromEvent(form, 'submit').pipe(
+const submitted$: Observable<Event> = fromEvent(form, 'submit').pipe(
   map((event) => event.preventDefault()),
   switchMap(() =>
     ajaxPost(
@@ -23,4 +23,4 @@ const submitted: Observable<Event> = fromEvent(form, 'submit').pipe(
   })
 );
 
-submitted.subscribe();
+submitted$.subscribe();

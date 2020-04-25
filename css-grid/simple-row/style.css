@@ -1,0 +1,18 @@
+body {
+  text-align: center;
+}
+
+.simple {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  column-gap: 15px;
+}
+
+div {
+  background-color: brown;
+  height: 100px;
+}
+
+#middle {
+  background-color: greenyellow;
+}

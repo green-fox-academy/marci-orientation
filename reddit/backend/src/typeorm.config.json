@@ -1,9 +1,0 @@
-{
-  "type": "mariadb",
-  "host": "localhost",
-  "username": "marci",
-  "password": "password",
-  "database": "reddit",
-  "entities": ["/src/**/**.entity{.ts,.js}"],
-  "synchronize": true
-}

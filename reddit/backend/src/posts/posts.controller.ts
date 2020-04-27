@@ -1,37 +1,41 @@
-import { Controller, Get, Post, Body, Put, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Body,
+  Post,
+  Put,
+  Param,
+  Delete,
+} from '@nestjs/common';
+import { rPost } from './post.entity';
 import { PostsService } from './posts.service';
-import { GetPostsDto } from '../posts/dto/get-posts.dto';
-import { PostEntity } from './post.entity';
-import { CreatePostDto } from '../posts/dto/create-post.dto';
-import { UpdateResult } from 'typeorm';
+import { UpdateResult, DeleteResult } from 'typeorm';
 
 @Controller('posts')
 export class PostsController {
-  constructor(private readonly service: PostsService) {}
+  constructor(private postService: PostsService) {}
 
   @Get()
-  getAllPosts(getPostsDto: GetPostsDto): Promise<PostEntity[]> {
-    return this.service.getPosts(getPostsDto);
-  }
-
-  @Get('/:id')
-  getPostById(@Param('id') id: number): Promise<PostEntity> {
-    return this.service.getPostById(id);
+  index(): Promise<rPost[]> {
+    return this.postService.findAll();
   }
 
   @Post()
-  createPost(@Body() createPostDto: CreatePostDto): Promise<PostEntity> {
-    return this.service.createPost(createPostDto);
+  async create(@Body() postData: rPost): Promise<rPost> {
+    return this.postService.create(postData);
   }
 
-  @Put('/:id/:action')
-  upVotePost(
-    @Param('action') action: string,
+  @Put(':id/upvote')
+  async update(
     @Param('id') id: number,
-    @Body() getPostsDto: GetPostsDto,
+    @Body() postData: rPost,
   ): Promise<UpdateResult> {
-    action === 'upvote' ? getPostsDto.vote + 1 : getPostsDto.vote - 1;
+    postData.id = Number(id);
+    return this.postService.update(postData);
+  }
 
-    return this.service.upVotePost(getPostsDto);
+  @Delete(':id/delete')
+  async delete(@Param('id') id: number): Promise<DeleteResult> {
+    return this.postService.delete(id);
   }
 }

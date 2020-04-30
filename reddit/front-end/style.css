@@ -5,12 +5,6 @@ body {
   background-color: lightgray;
 }
 
-nav {
-  display: block;
-  text-align: right;
-  background-color: lightgray;
-}
-
 .space-header {
   background: url('https://wallpapertag.com/wallpaper/full/6/b/d/116204-large-outer-space-background-2560x1600.jpg');
   background-repeat: no-repeat;
@@ -28,23 +22,33 @@ nav {
 article {
   display: block;
   margin-top: 50px;
+  clear: both;
 }
 
 article div {
+  margin-left: 10px;
   display: block;
   float: left;
+  background-color: white;
+  margin-bottom: 3px;
 }
 
-.number {
+/* .number {
   margin-top: 19px;
   margin-right: 10px;
+} */
+
+.content {
+  margin: 0;
 }
 
 .arrows {
   text-align: center;
+  padding-left: 5px;
 }
 .arrows > p {
   margin: 0;
+  margin-right: 0px;
 }
 
 .post-title {
@@ -54,6 +58,7 @@ article div {
 
 .submit-info {
   margin-top: 0px;
+  margin-right: 5px;
 }
 
 .submit-info,
@@ -69,7 +74,6 @@ article div {
 
 #about {
   float: right;
-
   background-color: gray;
   padding-right: 200px;
   padding-left: 20px;

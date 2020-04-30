@@ -11,33 +11,43 @@
     />
   </head>
   <body>
-    <nav>Add new post</nav>
     <header class="space-header">
       <h1 class="space-text">S P A C E</h1>
     </header>
     <article id="post-1">
-      <div class="number">1</div>
+      <!-- <div class="number">1</div> -->
       <div class="arrows">
-        <img src="assets/upvote.png" alt="" />
-        <p>0</p>
-        <img src="assets/downvote.png" alt="" />
+        <img
+          src="assets/upvote.png"
+          alt="upvote"
+          class="upvote"
+          id="upvote"
+          onclick="src='assets/upvoted.png'"
+        />
+        <p id="vote-count">0</p>
+        <img
+          src="assets/downvote.png"
+          alt="downvote"
+          class="upvote"
+          id="downvote"
+          onclick="src='assets/downvoted.png'"
+        />
       </div>
       <div class="content">
         <p class="post-title">Post title</p>
         <p class="submit-info">Submitted 1 year ago by <strong>me</strong></p>
       </div>
     </article>
-    </div>
-    
-        <div id="about">
-            <h3>About r/space</h3>
-            <ul>
-                <li>This</li>
-                <li>is</li>
-                <li>content</li>
-            </ul>
 
-        </div>
-<button type="submit" id="submit-button">SUBMIT A NEW POST</button>
+    <div id="about">
+      <h3>About r/space</h3>
+      <ul>
+        <li>This</li>
+        <li>is</li>
+        <li>content</li>
+      </ul>
+    </div>
+    <button type="submit" id="submit-button">SUBMIT A NEW POST</button>
+    <script src="index.js"></script>
   </body>
 </html>

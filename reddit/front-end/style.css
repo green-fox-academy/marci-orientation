@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400px;
+  background-color: lightgray;
+}
+
+nav {
+  display: block;
+  text-align: right;
+  background-color: lightgray;
+}
+
+.space-header {
+  background: url('https://wallpapertag.com/wallpaper/full/6/b/d/116204-large-outer-space-background-2560x1600.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  padding: 20px;
+}
+
+.space-text {
+  padding: 35px;
+  text-align: center;
+}
+
+article {
+  display: block;
+  margin-top: 50px;
+}
+
+article div {
+  display: block;
+  float: left;
+}
+
+.number {
+  margin-top: 19px;
+  margin-right: 10px;
+}
+
+.arrows {
+  text-align: center;
+}
+.arrows > p {
+  margin: 0;
+}
+
+.post-title {
+  font-size: large;
+  margin-bottom: 0px;
+}
+
+.submit-info {
+  margin-top: 0px;
+}
+
+.submit-info,
+.post-title {
+  margin-top: 0px;
+  margin-left: 10px;
+}
+
+.number {
+  margin-top: 19px;
+  margin-right: 10px;
+}
+
+#about {
+  float: right;
+
+  background-color: gray;
+  padding-right: 200px;
+  padding-left: 20px;
+  margin-right: 0;
+  margin-top: 15px;
+  width: 100px;
+}
+
+#submit-button {
+  position: absolute;
+  top: 235px;
+  width: 320px;
+  padding: 10px;
+  right: 0;
+}

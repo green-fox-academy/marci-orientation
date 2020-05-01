@@ -15,9 +15,6 @@ export class PostsService {
   }
 
   async findOne(id: number): Promise<rPost> {
-    console.log(id);
-    console.log(await this.postRepository.findOne(id));
-
     return await this.postRepository.findOne(id);
   }
 

@@ -21,7 +21,7 @@ export class PostsController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number) {
+  async findOne(@Param('id') id: number): Promise<rPost> {
     return this.postService.findOne(id);
   }
 

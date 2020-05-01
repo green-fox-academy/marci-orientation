@@ -20,6 +20,11 @@ export class PostsController {
     return this.postService.findAll();
   }
 
+  @Get(':id')
+  async findOne(@Param('id') id: number) {
+    return this.postService.findOne(id);
+  }
+
   @Post()
   async create(@Body() postData: rPost): Promise<rPost> {
     return this.postService.create(postData);
@@ -28,7 +33,7 @@ export class PostsController {
   @Put(':id/upvote')
   async update(
     @Param('id') id: number,
-    @Body() postData: rPost,
+    @Body() postData: rPost
   ): Promise<UpdateResult> {
     postData.id = Number(id);
     return this.postService.update(postData);

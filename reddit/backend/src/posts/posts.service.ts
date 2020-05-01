@@ -7,11 +7,18 @@ import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 export class PostsService {
   constructor(
     @InjectRepository(rPost)
-    private postRepository: Repository<rPost>,
+    private postRepository: Repository<rPost>
   ) {}
 
   async findAll(): Promise<rPost[]> {
     return await this.postRepository.find();
+  }
+
+  async findOne(id: number): Promise<rPost> {
+    console.log(id);
+    console.log(await this.postRepository.findOne(id));
+
+    return await this.postRepository.findOne(id);
   }
 
   async create(post: rPost): Promise<rPost> {

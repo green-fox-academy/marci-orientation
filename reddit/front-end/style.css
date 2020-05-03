@@ -21,8 +21,6 @@ body {
 
 article {
   display: block;
-  margin-top: 50px;
-  clear: both;
 }
 
 article div {
@@ -78,8 +76,9 @@ article div {
   padding-right: 200px;
   padding-left: 20px;
   margin-right: 0;
-  margin-top: 15px;
+  margin-top: 55px;
   width: 100px;
+  display: block;
 }
 
 #submit-button {
@@ -88,4 +87,14 @@ article div {
   width: 320px;
   padding: 10px;
   right: 0;
+}
+
+#dropdown {
+  margin-left: 250px;
+  text-align: center;
+}
+
+#url,
+#title {
+  display: block;
 }

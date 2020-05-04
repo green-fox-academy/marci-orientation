@@ -36,6 +36,7 @@
       <div class="content">
         <p class="post-title">Post title</p>
         <p class="submit-info">Submitted 1 year ago by <strong>me</strong></p>
+        <button id="delete-button">delete post</button>
       </div>
     </article>
 
@@ -50,9 +51,11 @@
     <button type="submit" id="submit-button">SUBMIT A NEW POST</button>
     <div id="dropdown">
       <form action="add-post" method="post">
-        <label for="title" id="title"> *title </label><input type="text" />
+        <label for="title" id="title"> *title </label
+        ><input type="text" id="title-input" placeholder="Post title" />
 
-        <label for="url" id="url">URL</label><input type="text" />
+        <label for="url" id="url">URL</label
+        ><input type="text" id="url-input" placeholder="URL" />
       </form>
     </div>
     <script src="dist/bundle.js"></script>

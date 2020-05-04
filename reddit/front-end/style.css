@@ -95,6 +95,7 @@ article div {
 }
 
 #url,
-#title {
+#title,
+#delete-button {
   display: block;
 }

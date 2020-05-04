@@ -14,8 +14,36 @@ const voteCount: HTMLParagraphElement = document.getElementById(
   'vote-count'
 ) as HTMLParagraphElement;
 
-const article = document.getElementById('post-1');
-const newPost = document.createElement('p');
+const article: HTMLElement = document.getElementById('post-1');
+
+const newPost: HTMLParagraphElement = document.createElement(
+  'p'
+) as HTMLParagraphElement;
+
+const button: HTMLButtonElement = document.getElementById(
+  'submit-button'
+) as HTMLButtonElement;
+
+const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
+
+function displayInfo(x: any): void {
+  for (let i = 0; i < x.length; i++) {
+    const element: HTMLElement = article;
+    const clonedElement: Node = element.cloneNode(true);
+    document.getElementsByTagName('body')[0].appendChild(clonedElement);
+    postTitle.innerHTML = x[i].title;
+    voteCount.innerHTML = x[i].vote;
+    submitInfo.innerText = `Submitted ${x[i].timestamp} years ago by ${x[i].owner}`;
+    article.id = x[i].id;
+    console.log('clone', clonedElement);
+  }
+}
+
+fromEvent(button, 'click')
+  .pipe(map(() => article))
+  .subscribe((x) => {
+    body.appendChild(x);
+  });
 
 const data$ = fromFetch('http://localhost:3000/posts').pipe(
   switchMap((response: Response) => {
@@ -31,17 +59,6 @@ const data$ = fromFetch('http://localhost:3000/posts').pipe(
   })
 );
 
-data$.subscribe((x) => {
-  for (let i = 0; i < x.length; i++) {
-    const element: HTMLElement = article;
-    const clonedElement: Node = element.cloneNode(true);
-    document.getElementsByTagName('body')[0].appendChild(clonedElement);
-    postTitle.innerHTML = x[i].title;
-    voteCount.innerHTML = x[i].vote;
-    submitInfo.innerText = `Submitted ${x[i].timestamp} years ago by ${x[i].owner}`;
-    console.log('clone', clonedElement);
-  }
+data$.subscribe((x: any) => {
+  displayInfo(x);
 });
-
-console.log(submitInfo);
-console.log('hello');

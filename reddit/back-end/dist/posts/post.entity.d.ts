@@ -7,4 +7,3 @@ export declare class rPost {
     owner: string;
     vote: number;
 }
-

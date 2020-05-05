@@ -1,0 +1,32 @@
+body {
+  background-color: lightblue;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: black;
+  color: white;
+  border-bottom: 4px solid gray;
+}
+
+td,
+th {
+  padding-right: 50px;
+  padding-left: 10px;
+  border: 2px solid gray;
+}
+
+tbody > tr:nth-child(1n) {
+  background-color: lightgray;
+}
+
+tbody > tr:nth-child(2n) {
+  background-color: white;
+}
+
+tr > td:nth-child(2)::before {
+  content: '$ ';
+}

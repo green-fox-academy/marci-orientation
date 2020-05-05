@@ -29,7 +29,7 @@ tbody > tr:nth-child(2n) {
 }
 
 tr > td:nth-child(2)::before {
-  content: '$ ';
+  content: attr(data-currency) '$ ';
 }
 
 tr :nth-child(2) {

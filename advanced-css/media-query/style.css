@@ -1,0 +1,30 @@
+.lines {
+  display: flex;
+  flex-direction: row;
+  height: 50vh;
+}
+
+#green {
+  background: green;
+  flex-grow: 1;
+}
+
+#yellow {
+  background: yellow;
+  flex-grow: 2;
+}
+
+#purple {
+  background: purple;
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 99vh) {
+  .lines {
+    flex-direction: column;
+    height: 100vh;
+  }
+  #yellow {
+    flex-grow: 1;
+  }
+}

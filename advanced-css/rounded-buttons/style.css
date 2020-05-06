@@ -1,5 +1,5 @@
 body {
-  background-color: navy;
+  background-color: rgb(52, 54, 153);
 }
 
 button {
@@ -21,8 +21,8 @@ button:active {
 }
 
 #blue {
-  background: rgb(116, 72, 247);
-  box-shadow: 0px 3px rgb(75, 56, 131);
+  background: rgb(93, 58, 199);
+  box-shadow: 0px 3px rgb(94, 71, 163);
 }
 
 #green {

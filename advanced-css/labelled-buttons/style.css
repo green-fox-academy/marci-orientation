@@ -1,0 +1,64 @@
+body {
+  background: rgb(114, 114, 150);
+}
+
+button {
+  display: block;
+}
+
+#delete {
+  background: url('./assets/trash-alt-regular.svg');
+  width: 43px;
+  height: 49px;
+}
+
+#approve {
+  background: url('./assets/check-circle-regular.svg');
+  width: 40px;
+  height: 40px;
+}
+
+#delete,
+#approve {
+  background-repeat: no-repeat;
+  border: hidden;
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 0%;
+}
+
+#delete:hover {
+  background-color: red;
+}
+
+#approve:hover {
+  background-color: lightgreen;
+}
+
+#delete:hover > p,
+#approve:hover > p {
+  visibility: visible;
+  width: 200px;
+
+  font-size: 15px;
+  margin-top: 0;
+}
+
+p {
+  visibility: hidden;
+  color: white;
+}
+
+#delete > p {
+  background-color: red;
+  margin-left: 43px;
+  height: 49px;
+  line-height: 49px;
+}
+
+#approve > p {
+  background-color: lightgreen;
+  margin-left: 40px;
+  height: 40px;
+  line-height: 40px;
+}

@@ -2,20 +2,12 @@ body {
   background: rgb(71, 71, 94);
 }
 
-button {
-  display: block;
-}
-
 #approve,
 #delete {
   width: 60px;
   height: 60px;
   margin-bottom: 5px;
   display: block;
-}
-
-#delete,
-#approve {
   border: hidden;
   background-color: black;
   color: white;
@@ -38,6 +30,14 @@ button {
   font-size: 15px;
 }
 
+#delete > p {
+  background-color: red;
+}
+
+#approve > p {
+  background-color: lightgreen;
+}
+
 p {
   visibility: hidden;
   color: white;
@@ -45,12 +45,4 @@ p {
   height: 60px;
   line-height: 60px;
   margin-top: -50px;
-}
-
-#delete > p {
-  background-color: red;
-}
-
-#approve > p {
-  background-color: lightgreen;
 }

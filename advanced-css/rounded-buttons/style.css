@@ -1,0 +1,36 @@
+body {
+  background-color: navy;
+}
+
+button {
+  padding: 10px 0px 10px 0px;
+  width: 100px;
+  border-radius: 3px;
+  border: hidden;
+  color: white;
+  margin-bottom: 5px;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity: 1;
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+#blue {
+  background: rgb(116, 72, 247);
+  box-shadow: 0px 3px rgb(75, 56, 131);
+}
+
+#green {
+  background: rgb(69, 173, 37);
+  box-shadow: 0px 3px rgb(60, 145, 35);
+}
+
+#red {
+  background: rgb(168, 50, 84);
+  box-shadow: 0px 3px rgb(141, 57, 81);
+}

@@ -10,17 +10,11 @@ const cargo = {
 };
 
 const inventory = {
-  received: 0.0,
-  amount: 0.0,
-  shipstatus: 0.0,
+  received: String(),
+  amount: String(),
+  shipstatus: String(),
   ready: false,
 };
-
-// function fillWith(string) {
-//   if (inventory.received === string) {
-//     return string;
-//   }
-// }
 
 app.get('/rocket', (req, res) => {
   if (inventory.received === '.30') {
@@ -57,6 +51,7 @@ app.get('/rocket/fill', (req, res) => {
         received: (inventory.received = req.query.caliber),
         shipstatus: (inventory.shipstatus = 'full'),
         ready: (inventory.ready = true),
+        amount: inventory.amount,
       };
     }
     res.status(200).send(temp);

@@ -4,15 +4,15 @@ body {
 
 #approve,
 #delete {
+  display: block;
+  border: hidden;
   width: 60px;
   height: 60px;
   margin-bottom: 5px;
-  display: block;
-  border: hidden;
-  background-color: black;
-  color: white;
   padding: 10px 10px 10px 10px;
   font-size: 40px;
+  color: white;
+  background: black;
 }
 
 #delete:hover {
@@ -23,26 +23,28 @@ body {
   color: lightgreen;
 }
 
+p {
+  visibility: hidden;
+  margin-top: -50px;
+  margin-left: 50px;
+  width: 200px;
+  height: 60px;
+  font-family: Operator Mono Book;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 60px;
+  color: white;
+}
+
 #delete:hover > p,
 #approve:hover > p {
   visibility: visible;
-  width: 200px;
-  font-size: 15px;
 }
 
 #delete > p {
-  background-color: red;
+  background: red;
 }
 
 #approve > p {
-  background-color: lightgreen;
-}
-
-p {
-  visibility: hidden;
-  color: white;
-  margin-left: 50px;
-  height: 60px;
-  line-height: 60px;
-  margin-top: -50px;
+  background: lightgreen;
 }

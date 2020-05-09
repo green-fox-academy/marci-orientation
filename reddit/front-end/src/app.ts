@@ -3,34 +3,26 @@ import { map, switchMap, catchError } from 'rxjs/operators';
 import { fromFetch } from 'rxjs/fetch';
 import { AjaxResponse, ajax, AjaxRequest } from 'rxjs/ajax';
 
-const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
+const postSection = document.getElementsByTagName('section')[0];
 
-const submitInfo: HTMLParagraphElement = document.getElementsByClassName(
+const submitInfo: HTMLParagraphElement = document.getElementById(
   'submit-info'
-)[0] as HTMLParagraphElement;
-const postTitle: HTMLParagraphElement = document.getElementsByClassName(
-  'post-title'
-)[0] as HTMLParagraphElement;
-const voteCount: HTMLParagraphElement = document.getElementById(
-  'vote-count'
 ) as HTMLParagraphElement;
+const postTitle: HTMLHeadElement = document.getElementById('content-header');
+const voteCount: HTMLDivElement = document.getElementById(
+  'vote-counter'
+) as HTMLDivElement;
 
-const article: HTMLElement = document.getElementById('post-1');
+const post: HTMLElement = document.getElementById('post');
 
-const button: HTMLButtonElement = document.getElementById(
-  'submit-button'
+const submitPost: HTMLButtonElement = document.getElementById(
+  'submit-post'
 ) as HTMLButtonElement;
-const deletePostBtn: HTMLButtonElement = document.getElementById(
-  'delete-button'
+const deletePost: HTMLButtonElement = document.getElementById(
+  'delete-post'
 ) as HTMLButtonElement;
 
-const titleInputField: HTMLInputElement = document.getElementById(
-  'title-input'
-) as HTMLInputElement;
-
-const urlInputField: HTMLInputElement = document.getElementById(
-  'url-input'
-) as HTMLInputElement;
+console.log('delete-post', deletePost);
 
 //creating new post
 const createNewPost$: Observable<AjaxRequest> = ajax({
@@ -40,8 +32,8 @@ const createNewPost$: Observable<AjaxRequest> = ajax({
     'Content-Type': 'application/json',
   },
   body: {
-    title: titleInputField.value,
-    url: urlInputField.value,
+    title: 'hello',
+    url: 'www.hello.com',
     owner: 'Donald Trump',
     timestamp: 2,
     score: 0,
@@ -56,7 +48,7 @@ const createNewPost$: Observable<AjaxRequest> = ajax({
 );
 
 //click on submit button to create a new post
-fromEvent(button, 'click')
+fromEvent(submitPost, 'click')
   .pipe(switchMap(() => createNewPost$))
   .subscribe(console.log);
 
@@ -68,7 +60,7 @@ const deletePost$: Observable<AjaxRequest> = ajax({
     'Content-Type': 'application/json',
   },
   body: {
-    id: article.id,
+    id: post.id,
   },
 }).pipe(
   map((response: AjaxResponse) => console.log('response: ', response)),
@@ -82,16 +74,14 @@ deletePost$.subscribe(console.log);
 
 function displayInfo(x: any): void {
   for (let i = 0; i < x.length; i++) {
-    const element: HTMLElement = article;
-    const clonedElement: Node = element.cloneNode(true);
-    body.appendChild(clonedElement);
-    postTitle.innerHTML = x[i].title;
+    const article: HTMLElement = post;
+    const clonedElement: Node = post.cloneNode(true);
+    postSection.appendChild(clonedElement);
+    postTitle.innerHTML = x[i].title + ` ${x[i].id}`;
     voteCount.innerHTML = x[i].vote;
     submitInfo.innerText = `Submitted ${x[i].timestamp} years ago by ${x[i].owner}`;
     article.id = x[i].id;
-    deletePostBtn.className = `delete-button-${x[i].id}`;
-
-    console.log('clone', clonedElement);
+    deletePost.id = `delete-post-${x[i].id}`;
   }
 }
 

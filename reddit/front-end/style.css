@@ -1,101 +1,110 @@
 body {
   margin: 0;
+  background: #373c3f;
   font-family: 'Lato', sans-serif;
-  font-weight: 400px;
-  background-color: lightgray;
 }
 
-.space-header {
-  background: url('https://wallpapertag.com/wallpaper/full/6/b/d/116204-large-outer-space-background-2560x1600.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  padding: 20px;
+#content {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(25vh, auto);
+  gap: 5px;
+  margin: 0 auto;
+  grid-template-areas:
+    'header header header header header header'
+    'section section section main . .'
+    'section section section main aside aside'
+    'section section section main . .';
 }
 
-.space-text {
-  padding: 35px;
+#content > * {
+  padding: 30px;
+  font-family: 'Lato', sans-serif;
+}
+
+header {
+  grid-area: header;
+  background-image: url('https://austria-in-space.at/resources/img/hero-headers/ais-hero-header-2600x650-europe-frome-space.png');
+  font-size: 55px;
   text-align: center;
+  line-height: 192.25px;
+  color: white;
+}
+
+main {
+  grid-area: main;
+}
+
+section {
+  grid-area: section;
+}
+
+article,
+aside {
+  border-radius: 5px;
+  -webkit-box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.75);
+}
+
+aside {
+  grid-area: aside;
+  text-align: center;
+  margin-right: 10px;
+  background-color: #ffffff;
 }
 
 article {
-  display: block;
+  padding: 2px 2px 2px 2px;
+  margin-bottom: 35px;
+  height: 150px;
+  max-height: 200px;
+  background: #ffffff;
 }
 
-article div {
-  margin-left: 10px;
-  display: block;
-  float: left;
-  background-color: white;
-  margin-bottom: 3px;
+#upvote,
+#downvote {
+  background-repeat: no-repeat;
+  width: 15px;
+  height: 14px;
+  margin-left: 5px;
 }
 
-/* .number {
-  margin-top: 19px;
-  margin-right: 10px;
-} */
+#upvote {
+  background-image: url('assets/upvote.png');
+  margin-top: -90px;
+}
 
-.content {
+#downvote {
+  background-image: url('assets/downvote.png');
+}
+
+#vote-counter {
+  display: inline;
+  margin-left: 7px;
+}
+
+#content-header,
+#submit-info {
   margin: 0;
-}
-
-.arrows {
   text-align: center;
-  padding-left: 5px;
-}
-.arrows > p {
-  margin: 0;
-  margin-right: 0px;
-}
-
-.post-title {
-  font-size: large;
-  margin-bottom: 0px;
-}
-
-.submit-info {
-  margin-top: 0px;
-  margin-right: 5px;
-}
-
-.submit-info,
-.post-title {
-  margin-top: 0px;
-  margin-left: 10px;
-}
-
-.number {
-  margin-top: 19px;
+  margin-left: 30px;
   margin-right: 10px;
+  max-height: 30px;
 }
 
-#about {
-  float: right;
-  background-color: gray;
-  padding-right: 200px;
-  padding-left: 20px;
-  margin-right: 0;
-  margin-top: 55px;
-  width: 100px;
+#content-header {
+  margin-top: 10px;
+}
+
+#submit-info {
+  font-size: 15px;
+  margin-top: 70px;
+}
+
+a {
+  font-size: 13px;
   display: block;
-}
-
-#submit-button {
-  position: absolute;
-  top: 235px;
-  width: 320px;
-  padding: 10px;
-  right: 0;
-}
-
-#dropdown {
-  margin-left: 250px;
-  text-align: center;
-}
-
-#url,
-#title,
-#delete-button {
-  display: block;
+  text-align: right;
 }

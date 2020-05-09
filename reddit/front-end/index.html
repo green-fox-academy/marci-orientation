@@ -6,57 +6,39 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap"
       rel="stylesheet"
     />
+    <script src="bundle.js"></script>
   </head>
   <body>
-    <header class="space-header">
-      <h1 class="space-text">S P A C E</h1>
-    </header>
-    <article id="post-1">
-      <!-- <div class="number">1</div> -->
-      <div class="arrows">
-        <img
-          src="assets/upvote.png"
-          alt="upvote"
-          class="upvote"
-          id="upvote"
-          onclick="src='assets/upvoted.png'"
-        />
-        <p id="vote-count">0</p>
-        <img
-          src="assets/downvote.png"
-          alt="downvote"
-          class="upvote"
-          id="downvote"
-          onclick="src='assets/downvoted.png'"
-        />
-      </div>
-      <div class="content">
-        <p class="post-title">Post title</p>
-        <p class="submit-info">Submitted 1 year ago by <strong>me</strong></p>
-        <button id="delete-button">delete post</button>
-      </div>
-    </article>
-
-    <div id="about">
-      <h3>About r/space</h3>
-      <ul>
-        <li>This</li>
-        <li>is</li>
-        <li>content</li>
-      </ul>
-    </div>
-    <button type="submit" id="submit-button">SUBMIT A NEW POST</button>
-    <div id="dropdown">
-      <form action="add-post" method="post">
-        <label for="title" id="title"> *title </label
-        ><input type="text" id="title-input" placeholder="Post title" />
-
-        <label for="url" id="url">URL</label
-        ><input type="text" id="url-input" placeholder="URL" />
-      </form>
+    <div id="content">
+      <header>S P A C E</header>
+      <main></main>
+      <section>
+        <article id="post">
+          <h1 id="content-header"></h1>
+          <p id="submit-info"></p>
+          <a href="" id="delete-post">delete</a>
+          <div id="upvote"></div>
+          <div id="vote-counter">11</div>
+          <div id="downvote"></div>
+        </article>
+      </section>
+      <aside>
+        I apologize, Mr. Freeman, but I couldn't risk opening that door until I
+        was sure you'd scoured the area. This is the last entrance to the Lambda
+        Complex—every other has been sealed off to contain the invasion. When we
+        realized that you might actually make it here, we drew straws to see who
+        should stay behind to let you through. Obviously, I drew the short one.
+        My colleagues are waiting at the tip of the Lambda reactor...waiting for
+        you, I mean. The reactor is shut down right now, but you can activate it
+        on your way up. You'll have to flood the core anyway to get into the
+        teleportation labs. You're not authorized to know about those...but I
+        can see you already know a great deal more than any one man is supposed
+        to.
+        <button id="submit-post">Submit</button>
+      </aside>
     </div>
     <script src="dist/bundle.js"></script>
   </body>

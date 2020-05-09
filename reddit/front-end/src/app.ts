@@ -76,12 +76,12 @@ function displayInfo(x: any): void {
   for (let i = 0; i < x.length; i++) {
     const article: HTMLElement = post;
     const clonedElement: Node = post.cloneNode(true);
-    postSection.appendChild(clonedElement);
+    postSection.insertBefore(clonedElement, article);
     postTitle.innerHTML = x[i].title + ` ${x[i].id}`;
     voteCount.innerHTML = x[i].vote;
     submitInfo.innerText = `Submitted ${x[i].timestamp} years ago by ${x[i].owner}`;
     article.id = x[i].id;
-    deletePost.id = `delete-post-${x[i].id}`;
+    // deletePost.id = `delete-post-${x[i].id}`;
   }
 }
 

@@ -22,10 +22,10 @@ describe('Test the overall status of the ship without adding ammo', () => {
       caliber25: 0,
       caliber30: 0,
       caliber50: 0,
-      shipstatus: 0,
+      shipstatus: '',
       ready: false,
-      received: 0,
-      amount: 0,
+      received: '',
+      amount: '',
     });
     expect(response.statusCode).toBe(200);
   });
@@ -51,12 +51,12 @@ describe('Test the overall status of the ship with adding ammo', () => {
 describe('Test if the ship is full', () => {
   test('It should be ready to take off', async () => {
     const response = await request(app).get('/rocket/fill').query({
-      caliber: '0.25',
+      caliber: '.25',
       amount: 12500,
     });
 
     expect(response.body).toStrictEqual({
-      amount: '012500',
+      amount: '12500',
       received: '.25',
       shipstatus: 'full',
       ready: true,

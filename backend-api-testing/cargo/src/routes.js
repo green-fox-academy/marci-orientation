@@ -10,17 +10,38 @@ const cargo = {
 };
 
 const inventory = {
-  received: 0,
-  amount: 0,
-  shipstatus: 0.4,
+  received: 0.0,
+  amount: 0.0,
+  shipstatus: 0.0,
   ready: false,
 };
 
-app.get('/rocket', (req, res) => {
-  res.status(200).send({ cargo, ...inventory });
-});
+// function fillWith(string) {
+//   if (inventory.received === string) {
+//     return string;
+//   }
+// }
 
-module.exports = app;
+app.get('/rocket', (req, res) => {
+  if (inventory.received === '.30') {
+    cargo.caliber30 = '.30';
+    delete cargo.caliber25;
+    delete cargo.caliber50;
+  }
+
+  if (inventory.received === '.50') {
+    cargo.caliber50 = '.5';
+    delete cargo.caliber25;
+    delete cargo.caliber30;
+  }
+  if (inventory.received === '.25') {
+    cargo.caliber25 = '.25';
+    delete cargo.caliber50;
+    delete cargo.caliber30;
+  }
+
+  res.status(200).send({ ...cargo, ...inventory });
+});
 
 app.get('/rocket/fill', (req, res) => {
   if (req.query.caliber && req.query.amount) {
@@ -43,3 +64,5 @@ app.get('/rocket/fill', (req, res) => {
     res.status(400).send({ error: 'Please fill the ship with ammo!' });
   }
 });
+
+module.exports = app;

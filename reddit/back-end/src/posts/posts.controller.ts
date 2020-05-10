@@ -44,3 +44,5 @@ export class PostsController {
     return this.postService.delete(id);
   }
 }
+
+//replace this with @Param?

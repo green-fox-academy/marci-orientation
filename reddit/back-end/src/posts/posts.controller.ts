@@ -40,7 +40,7 @@ export class PostsController {
   }
 
   @Delete(':id/delete')
-  async delete(@Param('id') id: number): Promise<DeleteResult> {
+  async delete(@Body('id') id: number): Promise<DeleteResult> {
     return this.postService.delete(id);
   }
 }

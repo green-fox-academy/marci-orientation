@@ -1,9 +1,9 @@
 import { fromEvent, of, Observable } from 'rxjs';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { map, switchMap, catchError, mergeMap } from 'rxjs/operators';
 import { fromFetch } from 'rxjs/fetch';
 import { AjaxResponse, ajax, AjaxRequest } from 'rxjs/ajax';
 
-const postSection = document.getElementsByTagName('section')[0];
+const postSection: HTMLElement = document.getElementsByTagName('section')[0];
 
 const submitInfo: HTMLParagraphElement = document.getElementById(
   'submit-info'
@@ -18,11 +18,9 @@ const post: HTMLElement = document.getElementById('post');
 const submitPost: HTMLButtonElement = document.getElementById(
   'submit-post'
 ) as HTMLButtonElement;
-const deletePost: HTMLButtonElement = document.getElementById(
-  'delete-post'
-) as HTMLButtonElement;
-
-console.log('delete-post', deletePost);
+const deletePostBtn: HTMLCollectionOf<HTMLButtonElement> = document.getElementsByTagName(
+  'button'
+);
 
 //creating new post
 const createNewPost$: Observable<AjaxRequest> = ajax({
@@ -52,15 +50,18 @@ fromEvent(submitPost, 'click')
   .pipe(switchMap(() => createNewPost$))
   .subscribe(console.log);
 
+const identifier = deletePostBtn[0];
+console.log('parent nodes', identifier.parentElement.id);
+
 //delete post by article id
 const deletePost$: Observable<AjaxRequest> = ajax({
-  url: 'http://localhost:3000/posts/:id/delete',
+  url: `http://localhost:3000/posts/:id/delete`,
   method: 'DELETE',
   headers: {
     'Content-Type': 'application/json',
   },
   body: {
-    id: post.id,
+    id: deletePostBtn[0].parentElement.id,
   },
 }).pipe(
   map((response: AjaxResponse) => console.log('response: ', response)),
@@ -70,13 +71,15 @@ const deletePost$: Observable<AjaxRequest> = ajax({
   })
 );
 
-deletePost$.subscribe(console.log);
+const deletePost = fromEvent(deletePostBtn, 'click').pipe(
+  switchMap(() => deletePost$)
+);
 
 function displayInfo(x: any): void {
   for (let i = 0; i < x.length; i++) {
     const article: HTMLElement = post;
-    const clonedElement: Node = post.cloneNode(true);
-    postSection.insertBefore(clonedElement, article);
+    const clonedPost: Node = post.cloneNode(true);
+    postSection.insertBefore(clonedPost, postSection.childNodes[0]);
     postTitle.innerHTML = x[i].title + ` ${x[i].id}`;
     voteCount.innerHTML = x[i].vote;
     submitInfo.innerText = `Submitted ${x[i].timestamp} years ago by ${x[i].owner}`;
@@ -101,7 +104,14 @@ const data$: Observable<AjaxRequest> = fromFetch(
     return of({ error: true, message: error.message });
   })
 );
-//use helper function to output data into the DOM
-data$.subscribe((x: any) => {
-  displayInfo(x);
-});
+//use helper function to output data into the DOM and copy event listeners for cloned nodes
+data$
+  .pipe(
+    map((x: AjaxRequest) => displayInfo(x)),
+    switchMap(() => deletePost)
+  )
+  .subscribe(console.log);
+
+// data$.subscribe((x: AjaxRequest) => {
+//   displayInfo(x);
+// });

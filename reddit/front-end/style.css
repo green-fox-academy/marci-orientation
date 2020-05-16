@@ -13,7 +13,7 @@ body {
   margin: 0 auto;
   grid-template-areas:
     'header header header header header header'
-    'section section section main . .'
+    'section section section main . form'
     'section section section main aside aside'
     'section section section main . .';
 }
@@ -41,7 +41,8 @@ section {
 }
 
 article,
-aside {
+aside,
+form {
   border-radius: 5px;
   -webkit-box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.75);
@@ -60,6 +61,12 @@ article {
   margin-bottom: 35px;
   height: 150px;
   max-height: 200px;
+  background: #ffffff;
+}
+
+form {
+  grid-area: form;
+  margin-right: 10px;
   background: #ffffff;
 }
 

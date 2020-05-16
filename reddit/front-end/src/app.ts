@@ -2,6 +2,7 @@ import { fromEvent, of, Observable } from 'rxjs';
 import { map, switchMap, catchError, mergeMap } from 'rxjs/operators';
 import { fromFetch } from 'rxjs/fetch';
 import { AjaxResponse, ajax, AjaxRequest } from 'rxjs/ajax';
+import { ajaxPost } from 'rxjs/internal/observable/dom/AjaxObservable';
 
 const postSection: HTMLElement = document.getElementsByTagName('section')[0];
 
@@ -15,13 +16,19 @@ const voteCount: HTMLDivElement = document.getElementById(
 
 const post: HTMLElement = document.getElementById('post');
 
-const submitPost: HTMLButtonElement = document.getElementById(
-  'submit-post'
-) as HTMLButtonElement;
+const submitNewPostForm: HTMLFormElement = document.querySelector('form');
+const submitPostTitle: HTMLInputElement = document.getElementById(
+  'submit-post-title'
+) as HTMLInputElement;
+const submitPostUrl: HTMLInputElement = document.getElementById(
+  'submit-post-url'
+) as HTMLInputElement;
+
 const deletePostBtn: HTMLCollectionOf<HTMLButtonElement> = document.getElementsByTagName(
   'button'
 );
 
+console.log(submitNewPostForm);
 //creating new post
 const createNewPost$: Observable<AjaxRequest> = ajax({
   url: 'http://localhost:3000/posts',
@@ -30,8 +37,8 @@ const createNewPost$: Observable<AjaxRequest> = ajax({
     'Content-Type': 'application/json',
   },
   body: {
-    title: 'hello',
-    url: 'www.hello.com',
+    title: submitPostTitle.value,
+    url: submitPostUrl.value,
     owner: 'Donald Trump',
     timestamp: 2,
     score: 0,
@@ -45,10 +52,27 @@ const createNewPost$: Observable<AjaxRequest> = ajax({
   })
 );
 
-//click on submit button to create a new post
-fromEvent(submitPost, 'click')
-  .pipe(switchMap(() => createNewPost$))
+fromEvent(submitNewPostForm, 'submit')
+  .pipe(
+    map((event) => event.preventDefault()),
+    switchMap(() =>
+      ajaxPost('http://localhost:3000/posts', {
+        title: submitPostTitle.value,
+        url: submitPostUrl.value,
+        owner: 'Donald Trump',
+        timestamp: 2,
+        score: 0,
+        vote: 0,
+      })
+    ),
+    catchError((error: any) => {
+      console.log('error: ', error);
+      return of(error);
+    })
+  )
   .subscribe(console.log);
+
+//click on submit button to create a new post
 
 const identifier = deletePostBtn[0];
 console.log('parent nodes', identifier.parentElement.id);
@@ -61,7 +85,7 @@ const deletePost$: Observable<AjaxRequest> = ajax({
     'Content-Type': 'application/json',
   },
   body: {
-    id: deletePostBtn[0].parentElement.id,
+    id: 2,
   },
 }).pipe(
   map((response: AjaxResponse) => console.log('response: ', response)),
@@ -79,7 +103,7 @@ function displayInfo(x: any): void {
   for (let i = 0; i < x.length; i++) {
     const article: HTMLElement = post;
     const clonedPost: Node = post.cloneNode(true);
-    postSection.insertBefore(clonedPost, postSection.childNodes[0]);
+    postSection.insertBefore(clonedPost, postSection.childNodes[2]);
     postTitle.innerHTML = x[i].title + ` ${x[i].id}`;
     voteCount.innerHTML = x[i].vote;
     submitInfo.innerText = `Submitted ${x[i].timestamp} years ago by ${x[i].owner}`;

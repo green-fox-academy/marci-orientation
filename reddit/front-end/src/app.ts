@@ -29,6 +29,9 @@ const deletePostBtn: HTMLCollectionOf<HTMLButtonElement> = document.getElementsB
 const upvotePost: HTMLCollectionOf<Element> = document.getElementsByClassName(
   'upvote'
 );
+const downvotePost: HTMLCollectionOf<Element> = document.getElementsByClassName(
+  'downvote'
+);
 
 function displayInfo(x: any): void {
   for (let i = 0; i < x.length; i++) {
@@ -40,6 +43,8 @@ function displayInfo(x: any): void {
     submitInfo.innerText = `Submitted ${x[i].timestamp} years ago by ${x[i].owner}`;
     article.id = x[i].id;
     deletePostBtn[0].id = x[i].id;
+    upvotePost[0].id = x[i].id;
+    downvotePost[0].id = x[i].id;
   }
 }
 
@@ -66,7 +71,7 @@ const createNewPost$: Observable<Event> = fromEvent(
       title: submitPostTitle.value,
       url: submitPostUrl.value,
       owner: 'Anonymous',
-      timestamp: 0,
+      timestamp: new Date().getMinutes(),
       score: 0,
       vote: 0,
     })
@@ -81,17 +86,31 @@ const createNewPost$: Observable<Event> = fromEvent(
 
 createNewPost$.subscribe(console.log);
 
+// const upvote$ = fromEvent(upvotePost, 'click').pipe(
+//   switchMap((event: MouseEvent) =>
+//     ajaxPut(`http://localhost:3000/posts/:id/upvote`, {
+//       id: event.target.id,
+//     })
+//   ),
+//   catchError((error: any) => {
+//     console.log('error: ', error);
+//     return of(error);
+//   })
+// );
+
 const upvote$ = fromEvent(upvotePost, 'click').pipe(
   switchMap((event: MouseEvent) =>
-    ajaxPut(`http://localhost:3000/posts/:id/upvote`, {
-      id: event.target.id,
-      vote: 6700,
+    ajax({
+      url: `http://localhost:3000/posts/${event.target.id}/upvote`,
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: {
+        vote: 211,
+      },
     })
-  ),
-  catchError((error: any) => {
-    console.log('error: ', error);
-    return of(error);
-  })
+  )
 );
 
 const deletePost$: Observable<MouseEvent> = fromEvent(

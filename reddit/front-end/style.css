@@ -70,20 +70,20 @@ form {
   background: #ffffff;
 }
 
-#upvote,
-#downvote {
+.upvote,
+.downvote {
   background-repeat: no-repeat;
   width: 15px;
   height: 14px;
   margin-left: 5px;
 }
 
-#upvote {
+.upvote {
   background-image: url('assets/upvote.png');
   margin-top: -90px;
 }
 
-#downvote {
+.downvote {
   background-image: url('assets/downvote.png');
 }
 

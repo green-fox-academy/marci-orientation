@@ -1,6 +1,5 @@
-import { fromEvent, of, Observable } from 'rxjs';
+import { fromEvent, of, Observable, Subscription } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
-import { fromFetch } from 'rxjs/fetch';
 import { AjaxResponse, ajax, AjaxRequest } from 'rxjs/ajax';
 import { ajaxPost, ajaxPut } from 'rxjs/internal/observable/dom/AjaxObservable';
 
@@ -31,35 +30,39 @@ const upvotePost: HTMLCollectionOf<Element> = document.getElementsByClassName(
   'upvote'
 );
 
-//fetch all posts
-const data$: Observable<AjaxRequest> = fromFetch(
-  'http://localhost:3000/posts'
-).pipe(
-  switchMap((response: Response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      return of({ error: true, message: `Error ${response.status}` });
-    }
-  }),
-  catchError((error: Error) => {
-    console.error(error);
-    return of({ error: true, message: error.message });
-  })
-);
+function displayInfo(x: any): void {
+  for (let i = 0; i < x.length; i++) {
+    const article: HTMLElement = post;
+    const clonedPost: Node = post.cloneNode(true);
+    postSection.insertBefore(clonedPost, postSection.childNodes[2]);
+    postTitle.innerHTML = x[i].title + ` ${x[i].id}`;
+    voteCount.innerHTML = x[i].vote;
+    submitInfo.innerText = `Submitted ${x[i].timestamp} years ago by ${x[i].owner}`;
+    article.id = x[i].id;
+    deletePostBtn[0].id = x[i].id;
+  }
+}
 
-data$
+const data$: Subscription = ajax
+  .getJSON('http://localhost:3000/posts')
   .pipe(
-    map((x: AjaxRequest) => displayInfo(x)),
+    catchError((error: any) => {
+      console.log('error', error);
+      return of(error);
+    }),
+    map((request: AjaxRequest) => displayInfo(request)),
     switchMap(() => deletePost$),
     switchMap(() => upvote$)
   )
   .subscribe(console.log);
 
-//creating new post
-const createNewPost$ = fromEvent(submitNewPostForm, 'submit').pipe(
+// creating new post
+const createNewPost$: Observable<Event> = fromEvent(
+  submitNewPostForm,
+  'submit'
+).pipe(
   map((event: Event) => event.preventDefault()),
-  switchMap(() =>
+  switchMap((event) =>
     ajaxPost('http://localhost:3000/posts', {
       title: submitPostTitle.value,
       url: submitPostUrl.value,
@@ -77,26 +80,13 @@ const createNewPost$ = fromEvent(submitNewPostForm, 'submit').pipe(
   })
 );
 
-createNewPost$.subscribe((e) => console.log(e));
-
-function displayInfo(x: any): void {
-  for (let i = 0; i < x.length; i++) {
-    const article: HTMLElement = post;
-    const clonedPost: Node = post.cloneNode(true);
-    postSection.insertBefore(clonedPost, postSection.childNodes[2]);
-    postTitle.innerHTML = x[i].title + ` ${x[i].id}`;
-    voteCount.innerHTML = x[i].vote;
-    submitInfo.innerText = `Submitted ${x[i].timestamp} years ago by ${x[i].owner}`;
-    article.id = x[i].id;
-    deletePostBtn[0].id = x[i].id;
-  }
-}
+createNewPost$.subscribe(console.log);
 
 const upvote$ = fromEvent(upvotePost, 'click').pipe(
-  switchMap((event) =>
+  switchMap((event: MouseEvent) =>
     ajaxPut(`http://localhost:3000/posts/:id/upvote`, {
-      id: event.target,
-      vote: 765,
+      id: event.target.id,
+      vote: 6700,
     })
   ),
   catchError((error: any) => {
@@ -105,7 +95,10 @@ const upvote$ = fromEvent(upvotePost, 'click').pipe(
   })
 );
 
-const deletePost$: Observable<Event> = fromEvent(deletePostBtn, 'click').pipe(
+const deletePost$: Observable<MouseEvent> = fromEvent(
+  deletePostBtn,
+  'click'
+).pipe(
   switchMap((event: MouseEvent) =>
     ajax({
       url: `http://localhost:3000/posts/:id/delete`,

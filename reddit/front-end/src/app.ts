@@ -1,4 +1,4 @@
-import { fromEvent, of, Observable, Subscription } from 'rxjs';
+import { fromEvent, of, Observable, Subscription, merge } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { AjaxResponse, ajax, AjaxRequest } from 'rxjs/ajax';
 import { ajaxPost, ajaxPut } from 'rxjs/internal/observable/dom/AjaxObservable';
@@ -51,8 +51,7 @@ const data$: Subscription = ajax
       return of(error);
     }),
     map((request: AjaxRequest) => displayInfo(request)),
-    switchMap(() => deletePost$),
-    switchMap(() => upvote$)
+    switchMap(() => merge(deletePost$, upvote$))
   )
   .subscribe(console.log);
 

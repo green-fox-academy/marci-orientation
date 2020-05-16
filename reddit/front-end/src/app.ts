@@ -7,7 +7,7 @@ import {
 } from 'rxjs/operators';
 import { fromFetch } from 'rxjs/fetch';
 import { AjaxResponse, ajax, AjaxRequest } from 'rxjs/ajax';
-import { ajaxPost } from 'rxjs/internal/observable/dom/AjaxObservable';
+import { ajaxPost, ajaxPut } from 'rxjs/internal/observable/dom/AjaxObservable';
 
 const post: HTMLElement = document.getElementById('post');
 const postSection: HTMLElement = document.getElementsByTagName('section')[0];
@@ -65,7 +65,6 @@ data$
 //creating new post
 const createNewPost$ = fromEvent(submitNewPostForm, 'submit').pipe(
   map((event) => event.preventDefault()),
-
   switchMap(() =>
     ajaxPost('http://localhost:3000/posts', {
       title: submitPostTitle.value,
@@ -99,11 +98,38 @@ function displayInfo(x: any): void {
   }
 }
 
-fromEvent(upvote, 'click').subscribe(console.log);
-fromEvent(downvote, 'click').subscribe(console.log);
+const upvote$ = fromEvent(upvote, 'click')
+  .pipe(
+    switchMap(() =>
+      ajaxPut(`http://localhost:3000/posts/${upvote.parentElement.id}/upvote`, {
+        vote: +1,
+      })
+    ),
+    catchError((error: any) => {
+      console.log('error: ', error);
+      return of(error);
+    })
+  )
+  .subscribe(console.log);
 
-const identifier = deletePostBtn[0];
-console.log('parent nodes', identifier.parentElement.id);
+console.log(upvote.parentElement.id);
+
+fromEvent(downvote, 'click')
+  .pipe(
+    switchMap(() =>
+      ajaxPut('http://localhost:3000/posts/290/downvote', {
+        id: 290,
+        vote: 122222,
+      })
+    ),
+    catchError((error: any) => {
+      console.log('error: ', error);
+      return of(error);
+    })
+  )
+  .subscribe(console.log);
+
+console.log(document.getElementsByTagName('section')[0].children[1]);
 
 //delete post by article id
 const deletePost$: Observable<AjaxRequest> = ajax({

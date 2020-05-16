@@ -14,12 +14,6 @@ const postTitle: HTMLHeadElement = document.getElementById('content-header');
 const voteCount: HTMLDivElement = document.getElementById(
   'vote-counter'
 ) as HTMLDivElement;
-const upvote: HTMLDivElement = document.getElementById(
-  'upvote'
-) as HTMLDivElement;
-const downvote: HTMLDivElement = document.getElementById(
-  'downvote'
-) as HTMLDivElement;
 
 const submitNewPostForm: HTMLFormElement = document.querySelector('form');
 const submitPostTitle: HTMLInputElement = document.getElementById(
@@ -33,8 +27,9 @@ const deletePostBtn: HTMLCollectionOf<HTMLButtonElement> = document.getElementsB
   'button'
 );
 
-const asd = document.getElementsByClassName('upvote');
-console.log(postSection);
+const upvotePost: HTMLCollectionOf<Element> = document.getElementsByClassName(
+  'upvote'
+);
 
 //fetch all posts
 const data$: Observable<AjaxRequest> = fromFetch(
@@ -63,9 +58,7 @@ data$
 
 //creating new post
 const createNewPost$ = fromEvent(submitNewPostForm, 'submit').pipe(
-  map((event) => {
-    event.preventDefault();
-  }),
+  map((event: Event) => event.preventDefault()),
   switchMap(() =>
     ajaxPost('http://localhost:3000/posts', {
       title: submitPostTitle.value,
@@ -99,7 +92,7 @@ function displayInfo(x: any): void {
   }
 }
 
-const upvote$ = fromEvent(asd, 'click').pipe(
+const upvote$ = fromEvent(upvotePost, 'click').pipe(
   switchMap((event) =>
     ajaxPut(`http://localhost:3000/posts/:id/upvote`, {
       id: event.target,
@@ -111,21 +104,6 @@ const upvote$ = fromEvent(asd, 'click').pipe(
     return of(error);
   })
 );
-
-fromEvent(downvote, 'click')
-  .pipe(
-    switchMap(() =>
-      ajaxPut('http://localhost:3000/posts/290/downvote', {
-        id: 290,
-        vote: 122222,
-      })
-    ),
-    catchError((error: any) => {
-      console.log('error: ', error);
-      return of(error);
-    })
-  )
-  .subscribe(console.log);
 
 const deletePost$: Observable<Event> = fromEvent(deletePostBtn, 'click').pipe(
   switchMap((event: MouseEvent) =>

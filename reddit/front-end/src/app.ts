@@ -1,17 +1,8 @@
 import { fromEvent, of, Observable } from 'rxjs';
-import {
-  map,
-  switchMap,
-  catchError,
-  distinctUntilKeyChanged,
-} from 'rxjs/operators';
+import { map, switchMap, catchError } from 'rxjs/operators';
 import { fromFetch } from 'rxjs/fetch';
 import { AjaxResponse, ajax, AjaxRequest } from 'rxjs/ajax';
-import {
-  ajaxPost,
-  ajaxPut,
-  ajaxDelete,
-} from 'rxjs/internal/observable/dom/AjaxObservable';
+import { ajaxPost, ajaxPut } from 'rxjs/internal/observable/dom/AjaxObservable';
 
 const post: HTMLElement = document.getElementById('post');
 const postSection: HTMLElement = document.getElementsByTagName('section')[0];
@@ -45,8 +36,6 @@ const deletePostBtn: HTMLCollectionOf<HTMLButtonElement> = document.getElementsB
 const asd = document.getElementsByClassName('upvote');
 console.log(postSection);
 
-fromEvent(upvote, 'click').pipe(map((event) => event.st));
-
 //fetch all posts
 const data$: Observable<AjaxRequest> = fromFetch(
   'http://localhost:3000/posts'
@@ -67,7 +56,8 @@ const data$: Observable<AjaxRequest> = fromFetch(
 data$
   .pipe(
     map((x: AjaxRequest) => displayInfo(x)),
-    switchMap(() => deletePost)
+    switchMap(() => deletePost$),
+    switchMap(() => upvote$)
   )
   .subscribe(console.log);
 
@@ -109,19 +99,18 @@ function displayInfo(x: any): void {
   }
 }
 
-const upvote$ = fromEvent(asd, 'click')
-  .pipe(
-    switchMap(() =>
-      ajaxPut(`http://localhost:3000/posts/${upvote.parentElement.id}/upvote`, {
-        vote: 765,
-      })
-    ),
-    catchError((error: any) => {
-      console.log('error: ', error);
-      return of(error);
+const upvote$ = fromEvent(asd, 'click').pipe(
+  switchMap((event) =>
+    ajaxPut(`http://localhost:3000/posts/:id/upvote`, {
+      id: event.target,
+      vote: 765,
     })
-  )
-  .subscribe(() => console.log(upvote.parentElement.id));
+  ),
+  catchError((error: any) => {
+    console.log('error: ', error);
+    return of(error);
+  })
+);
 
 fromEvent(downvote, 'click')
   .pipe(
@@ -138,10 +127,10 @@ fromEvent(downvote, 'click')
   )
   .subscribe(console.log);
 
-const deletePost: Observable<Event> = fromEvent(deletePostBtn, 'click').pipe(
-  switchMap((event) =>
+const deletePost$: Observable<Event> = fromEvent(deletePostBtn, 'click').pipe(
+  switchMap((event: MouseEvent) =>
     ajax({
-      url: `http://localhost:3000/posts/${event.target.id}/delete`,
+      url: `http://localhost:3000/posts/:id/delete`,
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

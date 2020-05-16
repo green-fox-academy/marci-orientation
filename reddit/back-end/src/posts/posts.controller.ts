@@ -6,6 +6,8 @@ import {
   Put,
   Param,
   Delete,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { rPost } from './post.entity';
 import { PostsService } from './posts.service';
@@ -26,16 +28,17 @@ export class PostsController {
   }
 
   @Post()
+  @UsePipes(ValidationPipe)
   async create(@Body() postData: rPost): Promise<rPost> {
     return this.postService.create(postData);
   }
 
   @Put(':id/upvote')
   async update(
-    @Param('id') id: number,
+    @Param('id') id: any,
     @Body() postData: rPost
   ): Promise<UpdateResult> {
-    postData.id = Number(id);
+    postData.id = id;
     return this.postService.update(postData);
   }
 

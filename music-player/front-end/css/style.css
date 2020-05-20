@@ -36,10 +36,6 @@ body {
   grid-template-rows: repeat(6, 1fr);
 }
 
-.panel-2 {
-  /* flex: 1; */
-}
-
 .panel-2 > .current-song,
 .panel-2 > p {
   background: #f30d00;
@@ -60,8 +56,6 @@ body {
 #doom-guy {
   height: 75.406px;
   width: 81px;
-  /* max-height: 87px;
-  max-width: 81px; */
   padding: 20px;
   grid-column: 1/2;
 }
@@ -75,6 +69,7 @@ body {
 }
 
 .album {
+  background: url('https://vignette.wikia.nocookie.net/doom/images/f/f9/Doom_front_cover.jpg/revision/latest?cb=20180327224139');
   grid-column: 4/6;
   grid-row: 1/2;
 }
@@ -106,8 +101,8 @@ footer {
 
 footer img {
   width: 30px;
-  height: 30px;
-  margin: 40px 10px 40px 10px;
+  height: 35px;
+  margin: 35px 25px 0px 10px;
 }
 
 footer img:hover {

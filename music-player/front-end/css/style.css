@@ -1,8 +1,14 @@
 body {
-  letter-spacing: 0.1em;
+  letter-spacing: 0.25em;
   background: #340612;
-  color: #fdfafb;
-  font-family: Hack;
+  color: white;
+  font-family: Amazdoomleft;
+  font-size: larger;
+}
+
+@font-face {
+  font-family: Amazdoomleft;
+  src: url('/assets/fonts/Amazdoomleft-epw3.ttf');
 }
 
 .main-container {
@@ -57,8 +63,11 @@ body {
 .playlists {
   grid-column: 1/6;
   grid-row: 3/7;
-  overflow: scroll;
-  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.playlists::-webkit-scrollbar {
+  display: none;
 }
 
 .playlists > p {
@@ -76,6 +85,10 @@ body {
   background: #ff6600;
 }
 
+#playlist-titlebar {
+  margin: 0px 10px 0px 10px;
+}
+
 footer {
   display: grid;
   height: 100px;
@@ -87,8 +100,8 @@ footer {
 }
 
 #doom-guy {
-  height: 75.406px;
-  width: 81px;
+  max-height: 75.406px;
+  max-width: 81px;
   padding: 20px;
   grid-column: 1/2;
 }
@@ -96,9 +109,9 @@ footer {
 #doom-guy + p {
   grid-row: 2/3;
   text-align: center;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bolder;
-  padding: 5px;
+  /* padding: 5px; */
 }
 
 .album {

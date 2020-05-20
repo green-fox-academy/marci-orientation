@@ -2,6 +2,7 @@ body {
   letter-spacing: 0.1em;
   background: #340612;
   color: #fdfafb;
+  font-family: Hack;
 }
 
 .main-container {
@@ -53,6 +54,36 @@ body {
   margin: -24px 0px -24px 0px;
 }
 
+.playlists {
+  grid-column: 1/6;
+  grid-row: 3/7;
+}
+
+.playlists > p {
+  background: #f30d00;
+  padding: 20px;
+  margin: -8px 0px 0px 0px;
+}
+
+.playlists > p:nth-child(1),
+.panel-2 > p:nth-child(2) {
+  border-top: 2px solid #e0b024;
+}
+
+.playlists > p:nth-child(odd) {
+  background: #ff6600;
+}
+
+footer {
+  display: grid;
+  height: 100px;
+  width: 800px;
+  background: #e0b024;
+  /* border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 5px; */
+  grid-template-columns: repeat(20, 1fr);
+}
+
 #doom-guy {
   height: 75.406px;
   width: 81px;
@@ -69,34 +100,10 @@ body {
 }
 
 .album {
-  background: url('https://vignette.wikia.nocookie.net/doom/images/f/f9/Doom_front_cover.jpg/revision/latest?cb=20180327224139');
   grid-column: 4/6;
-  grid-row: 1/2;
-}
-
-.playlists {
-  grid-column: 1/6;
-  grid-row: 3/7;
-}
-
-.playlists > p {
-  background: #f30d00;
-  padding: 20px;
-  margin: -8px 0px 0px 0px;
-}
-
-.playlists > p:nth-child(odd) {
-  background: #ff6600;
-}
-
-footer {
-  display: grid;
-  height: 100px;
-  width: 800px;
-  background: #e0b024;
-  /* border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 5px; */
-  grid-template-columns: repeat(20, 1fr);
+  grid-row: 1/3;
+  background-repeat: no-repeat;
+  background: url('/assets/images/Doom_front_cover\ \(1\).jpg');
 }
 
 footer img {

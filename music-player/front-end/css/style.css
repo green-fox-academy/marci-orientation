@@ -57,6 +57,8 @@ body {
 .playlists {
   grid-column: 1/6;
   grid-row: 3/7;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .playlists > p {

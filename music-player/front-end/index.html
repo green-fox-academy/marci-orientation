@@ -48,11 +48,131 @@
         <img src="/assets/images/rewind.svg" id="rewind" />
         <img src="/assets/images/play.svg" id="play" />
         <img src="/assets/images/forward.svg" id="forward" />
-        <p id="progress-bar"></p>
+        <input
+          type="range"
+          min="-100"
+          max="0"
+          value="0"
+          class="range blue"
+          id="progress-slider"
+        />
         <img src="/assets/images/shuffle.svg" id="shuffle" />
         <img src="/assets/images/volume.svg" id="volume" />
-        <p id="volume-control"></p>
+        <input
+          type="range"
+          min="-100"
+          max="0"
+          value="0"
+          class="range blue"
+          id="volume-control"
+        />
       </footer>
     </div>
+
+    <script>
+      var inputRange = document.getElementById('progress-slider'),
+        maxValue = 100,
+        speed = 5,
+        currValue,
+        rafID;
+
+      inputRange.min = 0;
+      inputRange.max = maxValue;
+
+      function animateHandler() {
+        var transX = currValue - maxValue;
+
+        inputRange.value = currValue;
+
+        if (currValue < 20) {
+          inputRange.classList.remove('ltpurple');
+        }
+        if (currValue < 40) {
+          inputRange.classList.remove('purple');
+        }
+        if (currValue < 60) {
+          inputRange.classList.remove('pink');
+        }
+      }
+
+      function unlockStartHandler() {
+        window.cancelAnimationFrame(rafID);
+        currValue = +this.value;
+      }
+      inputRange.addEventListener('input', function () {
+        console.log('progress', this.value);
+        if (this.value > 20) {
+          inputRange.classList.add('ltpurple');
+        }
+        if (this.value > 40) {
+          inputRange.classList.add('purple');
+        }
+        if (this.value > 60) {
+          inputRange.classList.add('pink');
+        }
+
+        if (this.value < 20) {
+          inputRange.classList.remove('ltpurple');
+        }
+        if (this.value < 40) {
+          inputRange.classList.remove('purple');
+        }
+        if (this.value < 60) {
+          inputRange.classList.remove('pink');
+        }
+      });
+
+      var volumeControl = document.getElementById('volume-control'),
+        maxVal = 100,
+        speedTwo = 5,
+        currVal,
+        rafIDTwo;
+
+      volumeControl.min = 0;
+      volumeControl.max = maxVal;
+
+      function animateHandler() {
+        var transTwo = currVal - maxVal;
+
+        volumeControl.value = currVal;
+
+        if (currVal < 20) {
+          volumeControl.classList.remove('ltpurple');
+        }
+        if (currVal < 40) {
+          volumeControl.classList.remove('purple');
+        }
+        if (currVal < 60) {
+          volumeControl.classList.remove('pink');
+        }
+      }
+
+      function unlockStartHandler() {
+        window.cancelAnimationFrame(rafIDTwo);
+        currVal = +this.value;
+      }
+      volumeControl.addEventListener('input', function () {
+        console.log('volume', this.value);
+        if (this.value > 20) {
+          volumeControl.classList.add('ltpurple');
+        }
+        if (this.value > 40) {
+          volumeControl.classList.add('purple');
+        }
+        if (this.value > 60) {
+          volumeControl.classList.add('pink');
+        }
+
+        if (this.value < 20) {
+          volumeControl.classList.remove('ltpurple');
+        }
+        if (this.value < 40) {
+          volumeControl.classList.remove('purple');
+        }
+        if (this.value < 60) {
+          volumeControl.classList.remove('pink');
+        }
+      });
+    </script>
   </body>
 </html>

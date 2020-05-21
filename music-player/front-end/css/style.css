@@ -1,6 +1,7 @@
 body {
   letter-spacing: 0.25em;
-  background: #340612;
+  background: url('https://cdn.gamer-network.net/2019/usgamer/DOOM-1993-SWITCH-LEAD.jpg/EG11/thumbnail/1920x1080/format/jpg/quality/75/classic-doom-doom-2-and-3-look-like-theyre-coming-to-the-nintendo-switch-today.jpg');
+  /* background: #340612; */
   color: white;
   font-family: Amazdoomleft;
   font-size: 1.35em;
@@ -19,7 +20,7 @@ body {
   height: 600px;
   width: 1000px;
   flex-direction: column;
-  margin-top: 200px;
+  margin-top: 250px;
   box-shadow: 5px 5px 5px 5px #2e061b;
 }
 
@@ -35,6 +36,7 @@ body {
   background: #f30d00;
   height: 500px;
   width: 500px;
+  overflow: hidden;
 }
 
 .panel-1 {

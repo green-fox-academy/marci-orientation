@@ -3,7 +3,7 @@ body {
   background: #340612;
   color: white;
   font-family: Amazdoomleft;
-  font-size: larger;
+  font-size: 1.35em;
 }
 
 @font-face {
@@ -14,10 +14,10 @@ body {
 .main-container {
   display: flex;
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 1000px;
   min-width: 400px;
   height: 600px;
-  width: 800px;
+  width: 1000px;
   flex-direction: column;
   margin-top: 200px;
   box-shadow: 5px 5px 5px 5px #2e061b;
@@ -34,7 +34,7 @@ body {
 .panel-2 {
   background: #f30d00;
   height: 500px;
-  width: 400px;
+  width: 500px;
 }
 
 .panel-1 {
@@ -92,7 +92,7 @@ body {
 footer {
   display: grid;
   height: 100px;
-  width: 800px;
+  width: 1000px;
   background: #e0b024;
   /* border-bottom-left-radius: 2px;
   border-bottom-right-radius: 5px; */
@@ -117,8 +117,10 @@ footer {
 .album {
   grid-column: 4/6;
   grid-row: 1/3;
-  background-repeat: no-repeat;
+  max-width: 139px;
+  max-height: 192.312px;
   background: url('/assets/images/Doom_front_cover\ \(1\).jpg');
+  margin-left: 35px;
 }
 
 footer img {
@@ -328,4 +330,15 @@ input[type='range']::-webkit-slider-thumb:active {
 
 input[type='range']::-moz-range-thumb:active {
   cursor: -moz-grabbing;
+}
+
+#song-current-time,
+#song-total-time,
+#current-volume {
+  margin-top: 42px;
+}
+
+#song-total-time,
+#current-volume {
+  margin-left: 4px;
 }

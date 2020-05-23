@@ -45,11 +45,12 @@
         </div>
       </div>
       <footer>
-        <img src="/assets/images/rewind.svg" id="rewind" />
-        <img src="assets/images/play.svg" id="play" />
-        <img src="/assets/images/forward.svg" id="forward" />
+        <img src="/assets/images/rewind.svg" id="rewind" alt="rewind" />
+        <img src="assets/images/play.svg" id="play" alt="play" />
+        <img src="/assets/images/forward.svg" id="forward" alt="forward" />
         <p id="song-current-time">9:15</p>
-        <input
+        <label for="progress-slider"></label
+        ><input
           type="range"
           min="-100"
           max="0"
@@ -58,9 +59,10 @@
           id="progress-slider"
         />
         <p id="song-total-time">15:26</p>
-        <img src="/assets/images/shuffle.svg" id="shuffle" />
-        <img src="/assets/images/volume.svg" id="volume" />
-        <input
+        <img src="/assets/images/shuffle.svg" id="shuffle" alt="shuffle" />
+        <img src="/assets/images/volume.svg" id="volume" alt="volume" />
+        <label for="volume-control"></label
+        ><input
           type="range"
           min="-100"
           max="0"
@@ -71,11 +73,10 @@
         <p id="current-volume">56%</p>
       </footer>
     </div>
-
+    <script src="dist/index.js"></script>
     <script>
-      var inputRange = document.getElementById('progress-slider'),
+      let inputRange = document.getElementById('progress-slider'),
         maxValue = 100,
-        speed = 5,
         currValue,
         rafID;
 
@@ -83,7 +84,7 @@
       inputRange.max = maxValue;
 
       function animateHandler() {
-        var transX = currValue - maxValue;
+        const transX = currValue - maxValue;
 
         inputRange.value = currValue;
 
@@ -150,7 +151,7 @@
         }
       }
 
-      function unlockStartHandler() {
+      function unlockStartHandlerTwo() {
         window.cancelAnimationFrame(rafIDTwo);
         currVal = +this.value;
       }

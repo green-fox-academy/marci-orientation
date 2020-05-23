@@ -46,7 +46,13 @@
       </div>
       <footer>
         <img src="/assets/images/rewind.svg" id="rewind" alt="rewind" />
-        <img src="assets/images/play.svg" id="play" alt="play" />
+        <div id="play">
+          <audio
+            src="/assets/music/102_-_Doom_-_DOS_-_At_Doom's_Gate.ogg"
+            id="song"
+          ></audio
+          ><img src="assets/images/play.svg" alt="play" />
+        </div>
         <img src="/assets/images/forward.svg" id="forward" alt="forward" />
         <p id="song-current-time">9:15</p>
         <label for="progress-slider"></label
@@ -73,7 +79,7 @@
         <p id="current-volume">56%</p>
       </footer>
     </div>
-    <script src="dist/index.js"></script>
+    <script src="dist/bundle.js"></script>
     <script>
       let inputRange = document.getElementById('progress-slider'),
         maxValue = 100,

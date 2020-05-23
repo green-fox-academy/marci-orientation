@@ -37,6 +37,7 @@ body {
   height: 500px;
   width: 500px;
   overflow: hidden;
+  text-shadow: 1px 1px black;
 }
 
 .panel-1 {
@@ -99,6 +100,7 @@ footer {
   /* border-bottom-left-radius: 2px;
   border-bottom-right-radius: 5px; */
   grid-template-columns: repeat(20, 1fr);
+  text-shadow: 0.5px 0.5px black;
 }
 
 #doom-guy {
@@ -340,7 +342,12 @@ input[type='range']::-moz-range-thumb:active {
   margin-top: 42px;
 }
 
-#song-total-time,
-#current-volume {
+#song-total-time {
   margin-left: 4px;
+}
+
+#current-volume {
+  margin-right: 30px;
+  margin-left: 15px;
+  max-width: 10px;
 }

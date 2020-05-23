@@ -1,10 +1,11 @@
-import { fromEvent, of, from } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { getOneTrack$, getPlaylists$ } from './fetch-playlist';
 
 const playButton: HTMLImageElement = document.getElementById(
   'play'
 ) as HTMLImageElement;
-const song: HTMLAudioElement = document.getElementById(
+export const song: HTMLAudioElement = document.getElementById(
   'song'
 ) as HTMLAudioElement;
 const volumeControl: HTMLInputElement = document.getElementById(
@@ -19,17 +20,18 @@ const songCurrentTime: HTMLParagraphElement = document.getElementById(
 const songTotalTime: HTMLParagraphElement = document.getElementById(
   'song-total-time'
 ) as HTMLParagraphElement;
+const rewind: HTMLImageElement = document.getElementById(
+  'rewind'
+) as HTMLImageElement;
+const forward: HTMLImageElement = document.getElementById(
+  'forward'
+) as HTMLImageElement;
 
-const playList = document.getElementsByClassName('playlists')[0];
-console.log(playList.children);
-
-for (let i = 0; i < playList.children.length; i++) {
-  playList.children[i].innerHTML = 'asd';
-}
+export const playList: Element = document.getElementsByClassName(
+  'playlists'
+)[0];
 
 song.volume = 0;
-// playButton.childNodes[2].src = '/assets/images/pause.svg';
-// console.log(playButton.childNodes[2].src);
 
 fromEvent(playButton, 'click').subscribe(() => play());
 
@@ -37,6 +39,7 @@ function play(): void {
   if (song.paused) {
     playButton.childNodes[2].src = '/assets/images/pause.svg';
     song.play();
+    getOneTrack$.subscribe(console.log);
   } else {
     playButton.childNodes[2].src = '/assets/images/play.svg';
     song.pause();
@@ -46,3 +49,9 @@ function play(): void {
 fromEvent(volumeControl, 'input')
   .pipe(map((e) => (song.volume = e.target.value / 100)))
   .subscribe((e) => (currentVolume.innerHTML = (e * 100).toFixed(0)));
+
+getPlaylists$.subscribe(console.log);
+
+fromEvent(playList.children, 'click')
+  .pipe(map((x: MouseEvent) => (song.src = x.target.id)))
+  .subscribe(() => play());

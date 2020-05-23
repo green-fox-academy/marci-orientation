@@ -22,7 +22,7 @@ export class PlayListsService {
     return await this.playListRepository.delete(playlist_id);
   }
 
-  async deleteById(track_id: number) {
+  async deleteById(track_id: number): Promise<DeleteResult> {
     return await this.playListRepository.delete(track_id);
   }
 }

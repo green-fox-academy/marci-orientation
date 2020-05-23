@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { PlayListsService } from './playlists.service';
 import { PlayList } from './playlist.entity';
+import { DeleteResult } from 'typeorm';
 
 @Controller('playlists')
 export class PlayListsController {
@@ -12,7 +13,9 @@ export class PlayListsController {
   }
 
   @Get('playlist-tracks')
-  async getAllTracks(@Param('playlist_id') playlist_id: number) {
+  async getAllTracks(
+    @Param('playlist_id') playlist_id: number,
+  ): Promise<PlayList[]> {
     return this.playlistsService.findAll();
   }
 
@@ -25,14 +28,16 @@ export class PlayListsController {
   async addToPlayList(
     @Param('playlist_id') playlist_id: number,
     @Body() playlistData: PlayList,
-  ) {
+  ): Promise<PlayList> {
     playlistData.id = Number(playlist_id);
     console.log(`Created ${playlistData.id}`);
     return this.playlistsService.create(playlistData);
   }
 
   @Delete()
-  async delete(@Param('playlist_id') playlist_id: number) {
+  async delete(
+    @Param('playlist_id') playlist_id: number,
+  ): Promise<DeleteResult> {
     return this.playlistsService.delete(playlist_id);
   }
 
@@ -40,7 +45,7 @@ export class PlayListsController {
   async deleteById(
     @Param('playlist_id') playlist_id: number,
     @Param('track_id') track_id: number,
-  ) {
+  ): Promise<DeleteResult> {
     return this.playlistsService.deleteById(track_id);
   }
 }

@@ -1,5 +1,5 @@
-import { fromEvent } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { fromEvent, from, of } from 'rxjs';
+import { map, switchMap, mergeMap } from 'rxjs/operators';
 import { getOneTrack$, getPlaylists$ } from './fetch-playlist';
 
 const playButton: HTMLImageElement = document.getElementById(
@@ -14,7 +14,7 @@ const volumeControl: HTMLInputElement = document.getElementById(
 const currentVolume: HTMLParagraphElement = document.getElementById(
   'current-volume'
 ) as HTMLParagraphElement;
-const songCurrentTime: HTMLParagraphElement = document.getElementById(
+let songCurrentTime: HTMLParagraphElement = document.getElementById(
   'song-current-time'
 ) as HTMLParagraphElement;
 const songTotalTime: HTMLParagraphElement = document.getElementById(
@@ -50,8 +50,19 @@ fromEvent(volumeControl, 'input')
   .pipe(map((e) => (song.volume = e.target.value / 100)))
   .subscribe((e) => (currentVolume.innerHTML = (e * 100).toFixed(0)));
 
-getPlaylists$.subscribe(console.log);
+getPlaylists$.subscribe();
 
 fromEvent(playList.children, 'click')
-  .pipe(map((x: MouseEvent) => (song.src = x.target.id)))
+  .pipe(
+    map((x: MouseEvent) => (song.src = x.target.id)),
+    map(() => console.log(song.duration))
+  )
   .subscribe(() => play());
+
+const duration = of(song.duration);
+
+const elapsedTime$ = fromEvent(song, 'timeupdate').subscribe(
+  () => (songCurrentTime.innerHTML = song.currentTime.toFixed())
+);
+
+// fromEvent(rewind, 'click').subscribe(() => console.log(song.duration));

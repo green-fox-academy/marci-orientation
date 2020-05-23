@@ -1,7 +1,7 @@
 import { ajax, AjaxResponse } from 'rxjs/ajax';
 import { of, fromEvent, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { playList, song } from './index';
+import { playList } from './index';
 
 export const getPlaylists$: Observable<void> = ajax
   .getJSON('http://localhost:3000/playlists/')

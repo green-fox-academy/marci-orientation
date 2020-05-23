@@ -49,7 +49,7 @@ body {
 .panel-2 > p {
   background: #f30d00;
   border-left: 1.5px solid #e0b024;
-  padding: 20px;
+  padding: 17px;
 }
 .panel-2 > .current-song {
   padding-bottom: 67px;
@@ -74,7 +74,7 @@ body {
 
 .playlists > p {
   background: #f30d00;
-  padding: 20px;
+  padding: 19px;
   margin: -8px 0px 0px 0px;
 }
 

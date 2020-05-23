@@ -1,31 +1,15 @@
 import { fromEvent, of, from } from 'rxjs';
-import {
-  map,
-  switchMap,
-  takeUntil,
-  takeWhile,
-  tap,
-  pluck,
-  mergeMap,
-} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 const playButton = document.getElementById('play');
 const song: HTMLAudioElement = document.getElementById(
   'song'
 ) as HTMLAudioElement;
-const volumeControl = of(document.getElementById('volume-control')).pipe(
-  pluck('value')
-);
-const temp = document.getElementById('shuffle');
+const volumeControl = document.getElementById('volume-control');
 
-song.volume = 0.1;
+song.volume = 0.25;
 
-fromEvent(playButton, 'click')
-  .pipe(
-    mergeMap(() => volumeControl),
-    map(console.log)
-  )
-  .subscribe(() => play());
+fromEvent(playButton, 'click').subscribe(() => play());
 
 function play(): void {
   if (song.paused) {
@@ -34,6 +18,10 @@ function play(): void {
     song.pause();
   }
 }
+
+fromEvent(volumeControl, 'input')
+  .pipe(map((e) => (song.volume = e.target.value / 100)))
+  .subscribe(console.log);
 
 // console.log(volumeControl);
 

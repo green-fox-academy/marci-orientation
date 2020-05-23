@@ -14,6 +14,10 @@ export class PlayListsService {
     return await this.playListRepository.find();
   }
 
+  async findOne(playlist_id: number): Promise<PlayList> {
+    return await this.playListRepository.findOne(playlist_id);
+  }
+
   async create(playlist: PlayList): Promise<PlayList> {
     return await this.playListRepository.save(playlist);
   }

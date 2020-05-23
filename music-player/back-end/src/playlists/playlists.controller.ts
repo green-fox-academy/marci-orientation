@@ -12,11 +12,11 @@ export class PlayListsController {
     return this.playlistsService.findAll();
   }
 
-  @Get('playlist-tracks')
+  @Get('playlist-tracks/:playlist_id')
   async getAllTracks(
     @Param('playlist_id') playlist_id: number,
-  ): Promise<PlayList[]> {
-    return this.playlistsService.findAll();
+  ): Promise<PlayList> {
+    return this.playlistsService.findOne(playlist_id);
   }
 
   @Post()

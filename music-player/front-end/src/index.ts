@@ -1,5 +1,5 @@
-import { fromEvent, from, of } from 'rxjs';
-import { map, switchMap, mergeMap } from 'rxjs/operators';
+import { fromEvent, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { getOneTrack$, getPlaylists$ } from './fetch-playlist';
 
 const playButton: HTMLImageElement = document.getElementById(

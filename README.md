@@ -3,3 +3,5 @@ This is the repository of Marcian Szlovak of the Giggle Part Time Orientation co
 Foundation repo: https://github.com/green-fox-academy/marci-foundation
 
 Syllabus: https://github.com/green-fox-academy/giggle-syllabus
+
+Orientation example exam: https://github.com/marcianszlovak/orientation-example-exam

@@ -4,7 +4,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 export class Link {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column({ default: true })
+  @Column({ default: false })
   url: string;
   @Column({ default: false, unique: true })
   alias: string;

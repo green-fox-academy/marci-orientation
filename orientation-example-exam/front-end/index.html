@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <p id="output-field">Default</p>
+    <p id="output-field"></p>
     <form action="POST" onsubmit="return false">
-      <label for="url">URL</label><input type="text" id="url" /><label
-        for="alias"
+      <label for="url">URL</label
+      ><input type="text" id="url" autocomplete="off" /><label for="alias"
         >Alias</label
-      ><input type="text" id="alias" />
+      ><input type="text" id="alias" autocomplete="off" />
       <button type="submit" id="submit-button">Submit</button>
     </form>
     <script src="/dist/bundle.js"></script>

@@ -29,13 +29,16 @@ fromEvent(form, 'submit')
         { 'Content-Type': 'application/json' }
       ).pipe(
         map(
-          (response: AjaxResponse) =>
+          (response: AjaxResponse) => (
+            form.reset(),
+            (outPutField.style.color = 'black'),
             (outPutField.innerHTML = `Your URL aliased to ${response.xhr.response.alias} and your secret code is ${response.xhr.response.secretCode}`)
+          )
         ),
-        map(() => form.reset()),
         catchError((error: any) => {
           console.log(`There was an error: ${error.response.message}`);
           outPutField.innerHTML = error.response.message;
+          outPutField.style.color = 'red';
           return of(error);
         })
       )

@@ -11,6 +11,7 @@ import { typeOrmConfig } from './config/typeorm.config';
     TypeOrmModule.forRoot(typeOrmConfig),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../', 'front-end'),
+      renderPath: '/',
     }),
   ],
 })

@@ -3,19 +3,12 @@ import { LinksModule } from './links/links.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { typeOrmConfig } from './config/typeorm.config';
 
 @Module({
   imports: [
     LinksModule,
-    TypeOrmModule.forRoot({
-      type: 'mariadb',
-      host: 'localhost',
-      username: 'marci',
-      password: 'password',
-      database: 'links',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
-    }),
+    TypeOrmModule.forRoot(typeOrmConfig),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../', 'front-end'),
     }),

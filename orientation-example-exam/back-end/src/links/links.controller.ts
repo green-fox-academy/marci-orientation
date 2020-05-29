@@ -29,11 +29,10 @@ export class LinksController {
 
   @Get('/a/:alias')
   @Redirect('/a/:url')
-  async findOne(@Param('alias') alias: string) {
-    const myLink = this.linkRepository.getLink(alias);
+  async findOne(@Param('alias') alias: string): Promise<Link> {
+    return this.linkRepository.getLink(alias);
     // console.log(res.get((await myLink).url));
     // res.redirect((await myLink).url);
-    return myLink;
   }
 
   @Post('/save-link')
